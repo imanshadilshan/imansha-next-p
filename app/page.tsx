@@ -41,6 +41,7 @@ const allSkills = [
 ]
 
 const experience = {
+  logo: '/Experiences/wso2.png',
   company: 'WSO2 Lanka (Private) Limited',
   role: 'Software Engineering Intern',
   team: 'Solution Architect Team',
@@ -332,12 +333,111 @@ const projects = [
     image: '/projects/p3.png',
     github: 'https://github.com/imanshadilshan/Churn_Modelling-ANN_Classification',
     live: 'https://churnmodelling-annclassification.streamlit.app/'
+  },
+  {
+    num: '04',
+    title: 'ExamBuddy',
+    subtitle: 'Online Examination Platform · 2026',
+    tags: ['FastAPI', 'Next.js', 'PostgreSQL', 'Redis', 'Celery', 'Cloudinary', 'PayHere'],
+    description: 'A comprehensive full-stack educational platform for managing online exams, courses, and student assessments.',
+    features: [
+      'Exam Engine: Timed exams, multiple choice questions, and automatic grading.',
+      'Admin Dashboard: Unified interface for managing students, courses, exams, and payment analytics.',
+      'Serverless Stack: Neon PostgreSQL for database storage and Upstash serverless Redis caching.'
+    ],
+    image: '/projects/p4.png',
+    live: 'https://www.exambudy.com/',
+    warning: 'Real-World Project: Access to the source code is restricted due to proprietary client confidentiality. Live web app is active.'
+  },
+  {
+    num: '05',
+    title: 'Shopping Squad',
+    subtitle: 'MERN eCommerce Platform · 2025',
+    tags: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Redux', 'JWT', 'Cloudinary', 'PayPal', 'Docker'],
+    description: 'A full-stack MERN eCommerce application featuring dynamic product management and secure online payments.',
+    features: [
+      'MERN Core: Full-stack architecture with product search, filtering, and order tracking.',
+      'Secure Integrations: Admin dashboard, JWT-based authentication, and Cloudinary image hosting.',
+      'Payment & Containerization: Integrated PayPal payment gateway and fully containerized via Docker.'
+    ],
+    image: '/projects/p5.png',
+    github: 'https://github.com/ima-69/Shopping-Squad-MERN'
+  },
+  {
+    num: '06',
+    title: 'Microfinance ERP',
+    subtitle: 'Enterprise Loan Management ERP · 2026',
+    tags: ['FastAPI', 'Next.js 15', 'React Native', 'PostgreSQL', 'Redux', 'Bluetooth POS'],
+    description: 'A real-world enterprise resource planning (ERP) system designed for microfinance institutions to manage loans, schedules, and field collections.',
+    features: [
+      'Loan Scheduler: Computes non-EMI daily collection schedules excluding holidays and weekends.',
+      'Field Collector App: React Native mobile client integrated with Bluetooth ESC/POS receipt printers.',
+      'Compliance Penalty Engine: Custom non-compounding penalty calculation applied exclusively to missed days.'
+    ],
+    image: '/projects/p6.png',
+    warning: 'Real-World Project: Access is restricted. The source code and live endpoints are closed under proprietary customer confidentiality.'
+  },
+  {
+    num: '07',
+    title: 'INARI Clothing',
+    subtitle: 'eCommerce Brand Platform · 2026',
+    tags: ['Next.js 16', 'FastAPI', 'SQLModel', 'Tailwind CSS', 'Redux Toolkit', 'JWT'],
+    description: 'A premium, minimalist eCommerce official website for the INARI Clothing brand, designed with custom storefront layouts and admin product catalogs.',
+    features: [
+      'Brand Storefront: Minimalist Next.js UI using Tailwind CSS and Framer Motion for responsive product browsing.',
+      'FastAPI Backend: Lightweight API layer using SQLModel and SQLite with secure JWT login handling.',
+      'Client Workflows: Integrated shopping cart, product search, checkout workflows, and user order tracking.'
+    ],
+    image: '/projects/p7.png',
+    warning: 'Real-World Project: Access is restricted. The source code and live endpoints are closed under proprietary customer confidentiality.'
+  },
+  {
+    num: '08',
+    title: 'House of Cambridge',
+    subtitle: 'eCommerce Lifestyle Retailer · 2026',
+    tags: ['React 19', 'Express 5', 'MongoDB', 'Vite', 'Redux Toolkit', 'Tailwind CSS v4', 'Cloudinary', 'JWT'],
+    description: 'A premium MERN stack eCommerce platform for a lifestyle and fashion retailer. Implements dynamic cart management, coupons, loyalty points, and super admin operations.',
+    features: [
+      'Storefront UI: Vite SPA built with React 19, Tailwind CSS v4, and Framer Motion matching a 37-screen design.',
+      'Loyalty & Checkout Systems: Custom guest checkout workflows, fix/percentage coupon codes, and dynamic loyalty points calculations.',
+      'Super Admin Workflows: Full product CRUD with Cloudinary uploads, order/category analytics, returns, and notification broadcasting.'
+    ],
+    image: '/projects/p8.png',
+    warning: 'Real-World Project: Access is restricted. The source code and live endpoints are closed under proprietary customer confidentiality.'
+  },
+  {
+    num: '09',
+    title: 'Prasanna Printers & Communication POS',
+    subtitle: 'Retail Point-of-Sale System · 2026',
+    tags: ['React 19', 'Express 5', 'MongoDB', 'Vite', 'Redux Toolkit', 'Tailwind CSS v4', 'react-to-print'],
+    description: 'A real-world point-of-sale (POS) and inventory management system designed for a retail printing and communication business to manage sales, invoices, and suppliers.',
+    features: [
+      'Billing & Receipt Printing: Dynamic cart billing, invoice generation, and thermal POS receipt printing using react-to-print.',
+      'Inventory & Supplier Trackers: Comprehensive tracking of stock items, classifications, and supplier supply logs.',
+      'Role-based POS Terminal: Cashier interfaces, checkout calculations, transaction counters, and admin audit reporting.'
+    ],
+    image: '/projects/p9.png',
+    warning: 'Real-World Project: Access is restricted. The source code and live endpoints are closed under proprietary customer confidentiality.'
+  },
+  {
+    num: '10',
+    title: 'FuelQ',
+    subtitle: 'Software Architecture Group Project · 2025',
+    tags: ['Spring Boot', 'React', 'React Native', 'JWT', 'Twilio', 'Mailgun'],
+    description: 'A comprehensive fuel quota management system designed to handle distribution logistics during energy crises.',
+    features: [
+      'Multi-Role Portals: Dedicated dashboards for vehicle owners, fuel station operators, and system administrators.',
+      'QR Allocation Scanner: Fast verification system utilizing QR code scans for secure fuel quota allocation.',
+      'Mobile Companion: React Native mobile client for on-the-go account management and active quota checkout.'
+    ],
+    image: '/projects/p10.png',
+    github: 'https://github.com/software-architecture-project-kln/fuel-project'
   }
 ]
 
 const educationList = [
   {
-    logo: '/education/kelaniya.png',
+    logo: '/education/UOK_Logo-01.png',
     period: 'Jul 2023 – Present',
     institution: 'University of Kelaniya',
     degree: 'B.Sc. (Hons.) in Software Engineering',
@@ -349,12 +449,10 @@ const educationList = [
       "Awarded Dean's List recognition for academic excellence in Year 2 (GPA: 3.94)",
       "Awarded Dean's List recognition for academic excellence in Year 1 (GPA: 3.84)",
       "Specialization: Data Science & Engineering & Health Informatics",
-      "Final Year Research Project: Designing Disaster Early Warning Systems for Users with Cognitive Impairments",
-      "Active in IEEE Student Branch and SESA leadership roles",
     ]
   },
   {
-    logo: '/education/bandarawela.png',
+    logo: '/education/BMMV-Logo-1.png',
     period: '2019 – 2022',
     institution: 'Bandarawela Central College',
     degree: 'GCE Advanced Level',
@@ -485,8 +583,7 @@ export default function Home() {
             <div className="flex items-end gap-8 sm:gap-12 mt-6 mb-6">
               <HeroStat value="3.92" label="GPA" />
               <HeroStat value="2×" label="Dean's List" />
-              <HeroStat value="5+" label="Projects" />
-              <HeroStat value="6 mo" label="WSO2" />
+              <HeroStat value="10+" label="Projects" />
             </div>
 
             {/* CTAs */}
@@ -543,16 +640,12 @@ export default function Home() {
           </div>
 
           {/* Timeline - Full Width */}
-          <div className="relative border-l border-[#141414] ml-2 sm:ml-4 pl-6 sm:pl-8 space-y-6 mb-12">
+          <div className="relative border-l border-[#141414] ml-4 sm:ml-6 pl-8 sm:pl-10 space-y-6 mb-12">
             {educationList.map((edu, idx) => (
               <div key={idx} className="relative group">
                 {/* Timeline circle node */}
-                <div className={`absolute left-0 top-6 -translate-x-1/2 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 z-10 ${
-                  edu.isCurrent
-                    ? 'border-white bg-white text-black shadow-[0_0_10px_rgba(255,255,255,0.15)]'
-                    : 'border-[#1a1a1a] bg-[#0c0c0c] text-[#444] group-hover:border-[#333] group-hover:text-white'
-                }`}>
-                  <GraduationIcon className={edu.isCurrent ? 'text-black w-3.5 h-3.5' : 'text-[#444] group-hover:text-white w-3.5 h-3.5'} />
+                <div className="absolute left-[-32px] sm:left-[-40px] top-6 -translate-x-1/2 z-10">
+                  <InstitutionLogo src={edu.logo} name={edu.institution} isCurrent={edu.isCurrent} />
                 </div>
 
                 {/* Card */}
@@ -563,7 +656,6 @@ export default function Home() {
                 }`}>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <InstitutionLogo src={edu.logo} name={edu.institution} />
                       <div>
                         <div className="flex flex-wrap items-center gap-1.5">
                           <span className="text-[10px] font-mono text-[#aaa] tracking-wider font-semibold">{edu.period}</span>
@@ -677,6 +769,7 @@ export default function Home() {
             <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Experience</h2>
           </div>
           <ExperiencePanel
+            logo={experience.logo}
             company={experience.company}
             role={experience.role}
             team={experience.team}

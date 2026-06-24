@@ -19,9 +19,10 @@ interface ExperiencePanelProps {
   period: string
   milestones: Milestone[]
   defaultOpen?: boolean
+  logo?: string
 }
 
-export function ExperiencePanel({ company, role, team, location, period, milestones, defaultOpen = false }: ExperiencePanelProps) {
+export function ExperiencePanel({ company, role, team, location, period, milestones, defaultOpen = false, logo }: ExperiencePanelProps) {
   const [isOpen, setIsOpen]   = useState(defaultOpen)
   const [active, setActive]   = useState(0)
   const m = milestones[active]
@@ -36,7 +37,11 @@ export function ExperiencePanel({ company, role, team, location, period, milesto
       >
         <div className="flex items-center gap-4">
           <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-            <img src="/icons/wso2.png" alt="WSO2" className="w-full h-full object-contain p-1" />
+            {logo ? (
+              <img src={logo} alt={company} className="w-full h-full object-contain p-1" />
+            ) : (
+              <div className="text-[12px] font-bold text-[#888]">{company.slice(0, 2).toUpperCase()}</div>
+            )}
           </div>
           <div>
             <p className="text-[15px] font-semibold text-white">{company}</p>
