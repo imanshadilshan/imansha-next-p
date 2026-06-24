@@ -21,7 +21,7 @@ export function InstitutionLogo({ src, name }: InstitutionLogoProps) {
           onError={() => setImgError(true)}
         />
       ) : (
-        <span className="text-sm font-black text-amber-500 uppercase">{firstLetter}</span>
+        <span className="text-sm font-black text-[#aaa] uppercase">{firstLetter}</span>
       )}
     </div>
   )

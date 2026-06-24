@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Imansha Dilshan — AI Engineer | Full-Stack Developer",
+  title: "Imansha Dilshan",
   description: "AI Engineer and Full-Stack Developer specializing in Generative AI, RAG pipelines, multi-agent systems, and scalable applications. IEEE researcher, WSO2 alumni.",
 };
 

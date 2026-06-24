@@ -6,6 +6,7 @@ import { SkillsSlider } from './components/SkillsSlider'
 import { ExperiencePanel } from './components/ExperiencePanel'
 import { ResearchPanel } from './components/ResearchPanel'
 import { InstitutionLogo } from './components/InstitutionLogo'
+import { ProjectsSlider } from './components/ProjectsSlider'
 
 export const dynamic = 'force-dynamic'
 
@@ -289,28 +290,49 @@ const ipurse = {
 const projects = [
   {
     num: '01',
-    title: 'AI-Powered Customer Churn Prediction',
-    subtitle: 'Deep Learning Application · Dec 2025',
-    tags: ['Python', 'TensorFlow', 'Keras', 'Scikit-learn', 'Streamlit'],
-    description: 'End-to-end deep learning application using an Artificial Neural Network to predict customer churn in banking. Includes real-time inference interface and live behavioral analysis with Streamlit.',
-    github: 'https://github.com/ima-69',
+    title: 'Industrial Copilot',
+    subtitle: 'Generative AI Multi-Agent System · 2026',
+    tags: ['FastAPI', 'Next.js 14', 'TypeScript', 'LangGraph', 'PostgreSQL', 'pgvector', 'TensorFlow', 'Keras', 'InfluxDB', 'GPT-4o'],
+    description: 'An enterprise-grade agentic Generative AI framework for industrial predictive maintenance. Converts raw sensor streams and manuals into safety-critical diagnostic and repair procedures.',
+    features: [
+      'LangGraph Orchestration: 6-agent workflow for safety-critical diagnostics.',
+      '4-Stage AI Validation: Integrates physics constraints, temporal trends, and GPT-4o checks.',
+      'Autoencoder ML Engine: Dense/LSTM models trained per machine for anomaly detection.'
+    ],
+    image: '/projects/p1.png',
+    live: 'https://genaicopilot.zynaptrix.com/',
+    warning: 'The live demo may be temporarily unavailable if the OpenAI API key budget is exhausted.'
   },
   {
     num: '02',
-    title: 'SalonSync — Microservices Booking Platform',
-    subtitle: 'Full Stack Platform · Jun 2025 – Present',
-    tags: ['Spring Boot', 'React', 'MySQL', 'RabbitMQ', 'Keycloak', 'Stripe', 'Docker'],
-    description: 'Enterprise-grade salon booking platform built on microservices architecture. Features Keycloak/JWT auth, Stripe payment processing, and async event-driven communication via RabbitMQ.',
-    github: 'https://github.com/ima-69',
+    title: 'GeoRescue',
+    subtitle: 'Multi-Agent GIS Disaster Response · 2026',
+    tags: ['CrewAI', 'Ollama', 'Qwen2-VL', 'Python', 'Streamlit', 'GeoPandas', 'OSMnx', 'NetworkX', 'AMD MI300X', 'ROCm'],
+    description: 'An AI-powered real-time disaster response platform built for the AMD Developer Hackathon. Utilizes fine-tuned satellite vision and multi-agent reasoning to automate flood intelligence and rescue routing.',
+    features: [
+      'Satellite Vision Analyst: Fine-tuned Qwen2-VL-7B using LoRA on AMD Instinct MI300X to detect flood zones in seconds.',
+      'Live GIS Routing Engine: Spatially intersects Open-Meteo precipitation with OSMnx graph networks to compute safe evacuation routes.',
+      'Multi-Agent CrewAI Flow: Orchestrates 4 agents (Ollama Llama 3.2 backbone) to compile real-time incident reports.'
+    ],
+    image: '/projects/p2.png',
+    github: 'https://github.com/imanshadilshan/geo-rescue-omni-GIS-agent',
+    warning: 'Active Development: This project is currently in progress. Local hardware dependencies (Ollama and ROCm) are required for full offline execution.'
   },
   {
     num: '03',
-    title: 'Shopping Squad — MERN eCommerce',
-    subtitle: 'Full Stack eCommerce · Feb – Jun 2025',
-    tags: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Redux', 'PayPal', 'Docker'],
-    description: 'Full-stack eCommerce platform with product search, order tracking, JWT authentication, admin dashboard, PayPal payment integration, and Cloudinary media management.',
-    github: 'https://github.com/ima-69',
-  },
+    title: 'Customer Churn Prediction',
+    subtitle: 'Deep Learning Classification · 2025',
+    tags: ['TensorFlow', 'Keras', 'Streamlit', 'Python', 'Pandas', 'NumPy', 'Scikit-learn'],
+    description: 'An AI-powered web application that predicts bank customer churn probability using Deep Learning (Artificial Neural Networks), deployed with a modern Streamlit interface.',
+    features: [
+      'ANN Classification: Trained deep neural network predicting churn probability based on customer profiles.',
+      'Streamlit Dashboard: Color-coded risk indicators and real-time predictions via custom Streamlit interfaces.',
+      'Data Preprocessing: Pre-fitted Scikit-learn scalers and encoders processing demographics and behavior.'
+    ],
+    image: '/projects/p3.png',
+    github: 'https://github.com/imanshadilshan/Churn_Modelling-ANN_Classification',
+    live: 'https://churnmodelling-annclassification.streamlit.app/'
+  }
 ]
 
 const educationList = [
@@ -544,7 +566,7 @@ export default function Home() {
                       <InstitutionLogo src={edu.logo} name={edu.institution} />
                       <div>
                         <div className="flex flex-wrap items-center gap-1.5">
-                          <span className="text-[10px] font-mono text-[#888] tracking-wider font-semibold">{edu.period}</span>
+                          <span className="text-[10px] font-mono text-[#aaa] tracking-wider font-semibold">{edu.period}</span>
                           {edu.gpa && (
                             <span className="px-1.5 py-0.5 text-[9px] font-bold font-mono rounded-full bg-[#111] border border-[#222] text-[#ccc]">
                               GPA {edu.gpa}
@@ -560,7 +582,7 @@ export default function Home() {
                         <h3 className="text-[13px] font-bold text-white mt-0.5">{edu.institution}</h3>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1 text-[10px] font-mono text-[#555] sm:ml-auto">
+                    <div className="flex items-center gap-1 text-[10px] font-mono text-[#888] sm:ml-auto">
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -575,8 +597,8 @@ export default function Home() {
                     <h4 className="text-[14.5px] font-bold text-white tracking-tight leading-snug">{edu.degree}</h4>
                     <ul className="space-y-2 mt-3.5">
                       {edu.highlights.map((bullet, bIdx) => (
-                        <li key={bIdx} className="flex gap-2.5 text-[12.5px] text-[#777] leading-relaxed">
-                          <span className="w-1 h-1 rounded-full bg-[#444] mt-2 flex-shrink-0 group-hover:bg-[#888] transition-colors duration-300" />
+                        <li key={bIdx} className="flex gap-2.5 text-[12.5px] text-[#aaa] leading-relaxed">
+                          <span className="w-1 h-1 rounded-full bg-[#888] mt-2 flex-shrink-0 group-hover:bg-white transition-colors duration-300" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -593,14 +615,14 @@ export default function Home() {
             {/* Leadership & Activities */}
             <div className="md:col-span-1 border border-[#1a1a1a] rounded-2xl overflow-hidden bg-[#050505]/40 flex flex-col h-full">
               <div className="px-6 py-4 border-b border-[#111] bg-[#050505]">
-                <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Leadership & Activities</p>
+                <p className="text-[10px] font-mono text-[#aaa] uppercase tracking-widest">Leadership & Activities</p>
               </div>
               <div className="divide-y divide-[#080808] bg-[#030303] flex-1">
                 {leadership.map((l) => (
                   <div key={l.role} className="px-6 py-4 hover:bg-[#050505] transition-colors">
                     <p className="text-[13px] font-semibold text-white">{l.role}</p>
-                    <p className="text-[12px] text-[#888] mt-0.5">{l.org} — {l.inst}</p>
-                    <p className="text-[10px] font-mono text-[#555] mt-1">{l.period}</p>
+                    <p className="text-[12px] text-[#ccc] mt-0.5">{l.org} — {l.inst}</p>
+                    <p className="text-[10px] font-mono text-[#888] mt-1">{l.period}</p>
                   </div>
                 ))}
               </div>
@@ -609,8 +631,8 @@ export default function Home() {
             {/* Certifications */}
             <div className="md:col-span-2 border border-[#1a1a1a] rounded-2xl overflow-hidden bg-[#050505]/40 flex flex-col h-full">
               <div className="px-6 py-4 border-b border-[#111] bg-[#050505] flex items-center justify-between">
-                <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Verified Credentials</p>
-                <span className="text-[10px] font-mono text-[#444]">— {certifications.length} Certificates</span>
+                <p className="text-[10px] font-mono text-[#aaa] uppercase tracking-widest">Verified Credentials</p>
+                <span className="text-[10px] font-mono text-[#888]">— {certifications.length} Certificates</span>
               </div>
               <div className="p-6 bg-[#030303] flex-1">
                 <div className="grid sm:grid-cols-2 gap-2.5">
@@ -620,11 +642,11 @@ export default function Home() {
                       className="flex items-start gap-3 px-4 py-3.5 border border-[#111] rounded-xl bg-[#040404] hover:border-[#1a1a1a] hover:bg-[#060606] transition-colors"
                     >
                       <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] flex items-center justify-center mt-0.5">
-                        <span className="text-[8px] font-black text-[#333]">{cert.category.slice(0, 2).toUpperCase()}</span>
+                        <span className="text-[8px] font-black text-[#aaa]">{cert.category.slice(0, 2).toUpperCase()}</span>
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[12px] text-[#aaa] font-medium leading-snug truncate">{cert.name}</p>
-                        <p className="text-[10px] font-mono text-[#555] mt-0.5">{cert.issuer} · {cert.category}</p>
+                        <p className="text-[12px] text-[#eee] font-medium leading-snug truncate">{cert.name}</p>
+                        <p className="text-[10px] font-mono text-[#888] mt-0.5">{cert.issuer} · {cert.category}</p>
                       </div>
                     </div>
                   ))}
@@ -706,44 +728,15 @@ export default function Home() {
       {/* ─── PROJECTS ─── */}
       <section id="projects" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="05" title="Projects" />
-          <div className="space-y-3">
-            {projects.map((p) => (
-              <div
-                key={p.num}
-                className="group border border-[#141414] rounded-2xl overflow-hidden hover:border-[#222] transition-all"
-              >
-                <div className="flex flex-col md:flex-row">
-                  {/* Number sidebar */}
-                  <div className="flex md:flex-col items-center md:items-start justify-between md:justify-start gap-1 px-5 py-4 md:py-6 md:w-20 border-b md:border-b-0 md:border-r border-[#0e0e0e] bg-[#040404] group-hover:bg-[#060606] transition-colors flex-shrink-0">
-                    <span className="text-[2rem] md:text-[2.5rem] font-black text-[#181818] group-hover:text-[#242424] transition-colors leading-none">{p.num}</span>
-                    <span className="text-[9px] font-mono text-[#222]">/ {projects.length.toString().padStart(2, '0')}</span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 px-6 py-5 bg-[#030303] group-hover:bg-[#050505] transition-colors">
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <div>
-                        <h3 className="text-[15px] font-semibold text-[#ddd] group-hover:text-white transition-colors">{p.title}</h3>
-                        <p className="text-[11px] font-mono text-[#3a3a3a] mt-0.5">{p.subtitle}</p>
-                      </div>
-                      <a href={p.github} target="_blank" rel="noopener noreferrer" className="text-[#2a2a2a] hover:text-[#888] transition-colors flex-shrink-0 mt-0.5">
-                        <GitHubIcon />
-                      </a>
-                    </div>
-                    <p className="text-[13px] text-[#555] leading-[1.75] mb-4 max-w-2xl">{p.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {p.tags.map((tag) => (
-                        <span key={tag} className="px-2.5 py-1 text-[10px] font-mono bg-[#080808] border border-[#141414] rounded-lg text-[#444]">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-7 h-[2px] bg-[#333] flex-shrink-0" />
+              <p className="text-[10px] font-mono text-[#333] uppercase tracking-[0.25em]">Featured Work</p>
+            </div>
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Selected Projects</h2>
           </div>
+
+          <ProjectsSlider projects={projects} />
         </div>
       </section>
 
