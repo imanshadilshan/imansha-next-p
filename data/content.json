@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Imansha Dilshan",
+    "title": "AI Engineer | Full-Stack Developer",
+    "tagline": "Building production-grade Generative AI systems, LLM-powered RAG pipelines, and scalable full-stack applications.",
+    "availability": "Open to Opportunities"
+  },
+  "about": {
+    "summary": "Final-year Software Engineering undergraduate and AI Engineer with hands-on experience designing and deploying production-grade Generative AI systems, including LLM-powered RAG pipelines, multi-agent frameworks, and multimodal AI services. Industry experience at WSO2 contributing to enterprise Generative AI initiatives, complemented by full-stack development across React, Spring Boot, FastAPI, and cloud platforms (Azure, GCP, Choreo). Passionate about building scalable, evaluation-driven AI products that solve real-world problems.",
+    "highlights": [
+      "IEEE Research — IRAI 2026 Melbourne",
+      "WSO2 Industry Experience",
+      "CGPA: 3.92 / 4.00"
+    ]
+  },
+  "contact": {
+    "email": "imansha.idr@gmail.com",
+    "phone": "+94 76 311 7229",
+    "linkedin": "https://linkedin.com/in/imansha-dilshan",
+    "github": "https://github.com/ima-69",
+    "medium": "https://medium.com/@imansha.idr",
+    "location": "Colombo, Sri Lanka"
+  }
+}
