@@ -2,6 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import type { ReactNode } from 'react'
 import { ContactForm } from './components/ContactForm'
+import { SkillsSlider } from './components/SkillsSlider'
+import { ExperiencePanel } from './components/ExperiencePanel'
+import { ResearchPanel } from './components/ResearchPanel'
 
 export const dynamic = 'force-dynamic'
 
@@ -36,30 +39,249 @@ const allSkills = [
 ]
 
 const experience = {
-  company: 'WSO2',
-  companyInitial: 'W',
-  role: 'Intern Software Engineer',
+  company: 'WSO2 Lanka (Private) Limited',
+  role: 'Software Engineering Intern',
   team: 'Solution Architect Team',
   location: 'Colombo, Sri Lanka (On-site)',
   period: 'Sep 2025 – Feb 2026',
   milestones: [
-    { label: 'Geronimo Phase 1', detail: 'Deployed Gemini AI Grounded Search for real-time lead enrichment; built production FastAPI services and deployed to WSO2 Choreo.' },
-    { label: 'Geronimo Phase 2', detail: 'Engineered RAG system with document summarization, keyword extraction, vector search using pgvector, and LLM-based response validation.' },
-    { label: 'Ballerina Connector', detail: 'Added shared drive support to the open-source Google Drive Connector; released in ballerinax/googleapis.drive 3.4.1.' },
-    { label: 'AI Course & Security', detail: 'Co-developed WSO2 AI Course content and led an internal session on securing agentic AI applications using Asgardeo IAM.' },
+    {
+      label: 'Shared Google Drive Support',
+      subtitle: 'Open-Source Ballerina Connector Enhancement',
+      metric: { value: 'v3.4.1', label: 'Ballerina Central Release' },
+      description: 'Identified that the existing Ballerina Google Drive connector lacked shared drive support, blocking access to documents stored in the enterprise "Customers" shared drive. Enhanced the connector to enable shared Google Drive access for document ingestion into vectorization workflows. The feature was officially released as ballerinax/googleapis.drive v3.4.1 on Ballerina Central.',
+      focuses: [
+        'Extended the open-source Ballerina Google Drive connector with shared drive API support',
+        'Enabled enterprise document ingestion for downstream vectorization workflows',
+        'Contributed to and published ballerinax/googleapis.drive v3.4.1 on Ballerina Central',
+      ],
+      tech: ['Ballerina', 'Google Drive API', 'Ballerina Central', 'WSO2'],
+    },
+    {
+      label: 'Geronimo Phase 2',
+      subtitle: 'GenAI-Powered Lead Intelligence System',
+      metric: { value: 'Hybrid', label: 'Lexical + Semantic Search' },
+      description: 'Engineered a GenAI-powered automation system for WSO2 sales teams that processes internal solution documents and historical lead interactions. When a lead is submitted through the Contact Us form, the system applies lexical and semantic search combined with LLM validation to identify relevant past engagements and solution documents, then shares consolidated insights with Solution Architects and Account Managers.',
+      focuses: [
+        'Designed and built hybrid lexical + semantic retrieval pipeline over internal knowledge base',
+        'Integrated LLM-based validation to filter and rank relevant historical engagements',
+        'Automated insight delivery to Solution Architects and Account Managers via email',
+      ],
+      tech: ['Python', 'RAG', 'pgvector', 'GPT-4o', 'LangChain', 'FastAPI', 'GCP'],
+    },
+    {
+      label: 'Vectorization Service Enhancement',
+      subtitle: 'Multi-Level Document Summarization Pipeline',
+      metric: { value: '250K+', label: 'Token Handling Capacity' },
+      description: 'The original service supported only chunk-level embeddings, limiting document-level understanding. Enhanced it by introducing full-document summarization and customer-focused keyword generation using GPT-4o. Implemented three multi-level strategies — Direct Summarization (<8K tokens), Hierarchical Summarization (8K–250K tokens), and Mega Document Processing (>250K tokens) — preventing the "lost-in-the-middle" issue in long-context LLM processing.',
+      focuses: [
+        'Introduced full-document summarization and keyword generation via GPT-4o',
+        'Built three-tier summarization strategy handling documents from 1K to 250K+ tokens',
+        'Significantly strengthened semantic retrieval quality and contextual understanding',
+      ],
+      tech: ['GPT-4o', 'Python', 'OpenAI API', 'Vector Embeddings', 'pgvector', 'GCP'],
+    },
+    {
+      label: 'Geronimo Response Service Enhancement',
+      subtitle: 'Document-Level LLM-Validated Precision Pipeline',
+      metric: { value: 'GPT-4o', label: 'Validation Engine' },
+      description: 'Upgraded the Response Service from chunk-level similarity retrieval to a document-level, LLM-validated precision pipeline. The system now validates document summaries for relevance, coverage, and contextual alignment using GPT-4o, and reranks results based on LLM-derived scoring. Past interaction retrieval was also improved through keyword extraction and LLM-based validation against lead identifiers, reducing false positives.',
+      focuses: [
+        'Shifted from vector similarity to GPT-4o-based document relevance and coverage scoring',
+        'Implemented keyword extraction + LLM validation for past interaction retrieval',
+        'Reduced false positives and improved recommendation reliability for sales teams',
+      ],
+      tech: ['GPT-4o', 'Python', 'pgvector', 'Semantic Search', 'LangChain', 'GCP'],
+    },
+    {
+      label: 'Geronimo Phase 1 — V2 Production',
+      subtitle: 'Real-Time Lead Enrichment Report Service',
+      metric: { value: 'Live', label: 'Production Deployed' },
+      description: 'Completed the enhancement and production deployment of Geronimo Phase 1 v2, a FastAPI-based real-time Lead Report Service. Uses a hybrid grounded search approach combining Gemini reasoning with live Google Search to generate verified insights about a lead\'s professional background, social presence, company profile, competitors, and recent news. Reports are sent via email and stored in BigQuery.',
+      focuses: [
+        'Built FastAPI Lead Report Service with Gemini + live Google Search grounding',
+        'Generated structured HTML reports delivered via email to Solution Engineers',
+        'Enriched lead data stored in BigQuery; deployed to production on WSO2 Choreo',
+      ],
+      tech: ['FastAPI', 'Gemini AI', 'Google Search API', 'BigQuery', 'WSO2 Choreo', 'Python'],
+    },
   ],
 }
 
 const research = {
-  title: 'Agentic Generative AI Framework for Industrial Predictive Maintenance',
+  title: 'An Agentic Generative AI Framework for Industrial Predictive Maintenance: Physics-Aware Anomaly Detection with Multimodal Retrieval-Augmented Generation',
   badge: 'IEEE IES Generative AI Challenge 2026',
   venue: 'IRAI 2026 · Melbourne, Australia',
+  period: 'Mar 2026 – Jul 2026',
+  contributions: [
+    {
+      label: 'Multimodal RAG Engine',
+      subtitle: 'Vision-Language Alignment via GPT-4o Captioning',
+      metric: { value: '1536d', label: 'Unified Embedding Space' },
+      description: 'A multimodal RAG engine employing GPT-4o Vision captioning to convert engineering diagrams and schematics into domain prose, stored within a unified 1536-dimensional pgvector embedding space. Enables cross-modal retrieval of text, tables, and image captions without auxiliary visual indices. Iteratively evolved through V1→V4 stages driven by observed production retrieval failures.',
+      focuses: [
+        'YOLOv8-DocLayNet layout detection on 150-DPI document renders for precise region extraction',
+        'GPT-4o Vision captioning of engineering schematics into semantically rich domain prose',
+        'Unified pgvector index for text, table, and image caption co-storage at 1536 dimensions',
+        'V4 pipeline: GPT-4o + Voronoi tessellation + Mobile SAM for composite figure decomposition',
+      ],
+      tech: ['YOLOv8', 'GPT-4o Vision', 'pgvector', 'PostgreSQL 16', 'text-embedding-3-small', 'Mobile SAM'],
+    },
+    {
+      label: 'Six-Node LangGraph Pipeline',
+      subtitle: 'Safety-Critical Multi-Agent Diagnostic DAG',
+      metric: { value: '6.8s', label: '300× Faster Than Manual' },
+      description: 'A six-node LangGraph Directed Acyclic Graph (DAG) decomposing fault diagnostics into specialised, auditable roles: Sensor Analyst, AI Validation Engineer, Diagnostic Classifier, Knowledge Retriever, Execution Strategist, and Safety Critic. End-to-end fault-to-procedure latency of 6.8 seconds — a 300× reduction over the manual 35-minute baseline across four LLM invocations.',
+      focuses: [
+        'Safety Critic enforces LOTO/PPE compliance with bounded two-retry refinement and deterministic fail-safe',
+        'Shared immutable pipeline state enables complete audit traceability across all six nodes',
+        '6.8s total latency across Sensor Analyst (0.8s), Validation (1.5s), RAG (1.2s), Strategist (2.0s)',
+        'Four-stage neuro-symbolic validation: physics constraints, temporal patterns, hybrid confidence, GPT-4o classification',
+      ],
+      tech: ['LangGraph', 'GPT-4o', 'Python', 'FastAPI', 'Multi-Agent Systems', 'LangChain'],
+    },
+    {
+      label: 'Physics-Aware Hybrid Confidence Layer',
+      subtitle: 'Dual-Architecture Autoencoder Anomaly Detection',
+      metric: { value: '90.15%', label: 'Detection Precision @ 3.35% FPR' },
+      description: 'Dual-architecture autoencoder models — a Dense Autoencoder (5→32→16→32→5) for point anomalies and an LSTM Autoencoder (64-unit, 10×5 windows) for temporal drift — fused with manufacturer-specified physics constraints. The hybrid confidence score C_hybrid integrates ML reconstruction error, physics violation severity, temporal trend reinforcement, and EMI spike suppression. Achieves 90.15% precision at 3.35% FPR vs. 12–15% FPR for rule-based SCADA baselines.',
+      focuses: [
+        '183× MSE separation ratio (µ_normal = 0.0685 vs µ_fault = 12.57) with near-zero class overlap',
+        'C_hybrid formula suppresses SENSOR_GLITCH readings, eliminating redundant LLM inference',
+        'Cross-machine F1 > 0.71 across Tea Pourer, Lathe, Centrifugal Pump, and Industrial Turbine',
+        'Consecutive-count gate (3 readings) suppresses transient noise before agentic pipeline escalation',
+      ],
+      tech: ['TensorFlow', 'Keras', 'Scikit-learn', 'Python', 'NumPy', 'pgvector'],
+    },
+    {
+      label: 'Institutional Intelligence Subsystem',
+      subtitle: 'Five-Gate Quality Pipeline for Organizational Memory',
+      metric: { value: '100%', label: 'Top-2 Retrieval Accuracy' },
+      description: 'Resolved incidents traverse a five-gate quality pipeline — Safety Critic approval, per-step AI verification, operator resolution confirmation, GPT-4o summarization, and vectorization into pgvector interaction memory — before archival. Enables Human-in-the-Loop continuous learning without model retraining. Validated via impeller clearance experiment: operator-corrected 0.5mm specification autonomously surfaced on fault recurrence. 6/6 top-2 retrieval accuracy across all asset types.',
+      focuses: [
+        'Five-gate pipeline: Safety Critic → AI Verification → Operator Confirmation → GPT-4o Summary → pgvector Archival',
+        'Bidirectional learning: AI guidance informs operators; operator field expertise augments future retrieval',
+        'Impeller clearance experiment validated autonomous recall of operator-validated specifications on recurrence',
+        '100% top-2 retrieval accuracy across 6 operator-resolved incidents spanning 4 asset types',
+      ],
+      tech: ['GPT-4o', 'pgvector', 'LangGraph', 'Python', 'PostgreSQL 16', 'HITL'],
+    },
+  ],
+}
+
+const fyp = {
+  title: 'Designing Disaster Early Warning Systems for Users with Cognitive Impairments',
+  badge: 'SENG 43216 · Final Year Research Project',
+  venue: 'University of Kelaniya · Faculty of Science',
   period: 'Mar 2026 – Present',
-  milestones: [
-    { label: 'LangGraph Pipeline', detail: 'Designing a six-node multi-agent pipeline for industrial predictive maintenance reasoning and decision support.' },
-    { label: 'Hybrid Confidence Layer', detail: 'Built a Physics-Aware Hybrid Confidence Layer fusing domain knowledge with LLM outputs for safer industrial recommendations.' },
-    { label: 'Multimodal RAG Engine', detail: 'Combining image captioning embeddings with text retrieval for institutional intelligence over technical documentation.' },
-    { label: 'Continuous Learning Loop', detail: 'Training-free learning via Human-in-the-Loop (HITL) feedback and historical case data integration.' },
+  statusLabel: 'In Progress',
+  contributions: [
+    {
+      label: 'Requirements Elicitation',
+      subtitle: 'Systematic Review & Participatory Co-Design',
+      metric: { value: '10', label: 'Evidence-Based Guidelines' },
+      description: 'Conducted systematic extraction of cognitive accessibility design guidelines from IEEE Xplore, ACM Digital Library, Scopus, and WCAG 2.2 — each coded by impairment type and design principle. Participatory workshops with users living with dementia, autism, MCI, and ADHD combine structured interviews, A/B low-fidelity mockup comparisons, and guided observation. Expert interviews with accessibility specialists and disaster management professionals validate and prioritize findings. Responds directly to the research gap identified by Madugalla et al. (2025) on disaster EWS for cognitively impaired populations.',
+      focuses: [
+        'Identified four failure categories: Navigation, Cognitive Load, Memory/Orientation, and Language Failures in mobile EWS',
+        'Mapped 10 evidence-based guidelines to EWS features — explicit labels, multimodal alerts, linear navigation, large controls',
+        'Addresses the 4× higher disaster mortality rate among disabled populations through inclusive, human-centered EWS design',
+      ],
+      tech: ['Systematic Literature Review', 'WCAG 2.2', 'IEEE Xplore', 'Participatory Research', 'A/B Testing'],
+    },
+    {
+      label: 'Requirements Specification',
+      subtitle: 'MoSCoW-Prioritized Catalogue & Evidence-Based Personas',
+      metric: { value: '5', label: 'Design Dimensions' },
+      description: 'Translating elicited guidelines into functional and non-functional requirements across five dimensions: cognitive load reduction, error tolerance, multimodal feedback, simplified navigation, and stress-responsive design. MoSCoW prioritization with measurable acceptance criteria — minimum 16pt font, 44×44px touch targets, maximum 3 navigation levels. Developing 4–6 evidence-based personas covering dementia, autism, MCI, ADHD, and schizophrenia for downstream prototype validation.',
+      focuses: [
+        'Five-dimensional requirements framework covering all cognitive impairment profiles from dementia to schizophrenia',
+        'Measurable acceptance criteria ensuring all requirements are actionable and testable, not aspirational',
+        'Evidence-based personas designed for persona-led cognitive walkthroughs during validation phase',
+      ],
+      tech: ['MoSCoW Prioritization', 'Requirements Engineering', 'UX Research', 'Persona Design', 'Human-Centered Design'],
+    },
+    {
+      label: 'Prototype Development',
+      subtitle: 'Figma Hi-Fi Prototype & Functional Mobile MVP',
+      metric: { value: '2', label: 'Parallel Dev Streams' },
+      description: 'Developing a high-fidelity Figma prototype and a functional mobile MVP in parallel — both implementing simplified linear navigation, multimodal alerts (visual, audio, haptic), error-tolerant interactions, and offline functionality. Iterative impairment-specific refinement: base accessibility version first, then progressively adding and validating adaptive features for each cognitive impairment profile one at a time.',
+      focuses: [
+        'Simplified linear navigation and large spaced controls (44×44px min) to reduce cognitive load in emergency conditions',
+        'Multimodal alert system: flashing screen + audible siren + haptic feedback + bold high-contrast large text',
+        'Offline-first architecture ensuring system usability when network connectivity fails during actual disasters',
+      ],
+      tech: ['Figma', 'React Native', 'Mobile Development', 'Accessibility Standards', 'Iterative Design'],
+    },
+    {
+      label: 'Validation & Synthesis',
+      subtitle: 'Empirical Usability Testing & Design Guidelines Framework',
+      metric: { value: 'N=20', label: 'Usability Testing' },
+      description: 'Planned empirical evaluation with 15–20 participants across three core EWS scenarios: locating an evacuation route, acknowledging an alert, and contacting emergency services. System Usability Scale (SUS) quantification alongside expert persona-led cognitive walkthroughs simulating emergency stress conditions ethically without live stress induction. Final synthesis produces a generalizable design guidelines framework and academic paper for safety-critical systems.',
+      focuses: [
+        'Task success and error rate measurement across evacuation, alert acknowledgment, and emergency contact scenarios',
+        'Persona-led cognitive walkthroughs as ethical alternative to live stress induction in participants',
+        'Generalizable design guidelines framework extending beyond low-stakes contexts to high-stress emergency conditions',
+      ],
+      tech: ['SUS Assessment', 'Usability Testing', 'Cognitive Walkthroughs', 'Mixed Methods', 'Thematic Analysis'],
+    },
+  ],
+}
+
+const ipurse = {
+  title: 'A Multi-Agent AI Framework for Real-Time Flood Disaster Response Using Satellite Imagery and Geospatial Analysis',
+  badge: 'iPURSE 2026 · Abstract ID: 569',
+  venue: 'Peradeniya University International Research Symposium',
+  period: 'Jun 2026',
+  statusLabel: 'Under Revision',
+  contributions: [
+    {
+      label: 'Multi-Agent Response Architecture',
+      subtitle: 'CrewAI Orchestration with Llama 3.2 Backbone',
+      metric: { value: '<60s', label: 'End-to-End Flood Report' },
+      description: 'An autonomous multi-agent AI platform delivering comprehensive end-to-end flood emergency response through a single user interaction — accessible to non-GIS-expert first responders. Four specialized agents orchestrated via the CrewAI framework with a Llama 3.2 reasoning backbone collectively perform 14 integrated response functions, transforming hours of fragmented expert GIS workflows into a unified, minutes-long autonomous operation.',
+      focuses: [
+        'Four specialized agents — Hazard Detection, Infrastructure Analysis, Evacuation Routing, Community Coordination',
+        'Complete flood situational reports generated in under 60 seconds end-to-end',
+        'Designed for non-GIS-expert first responders with single-interaction access to full situational awareness',
+      ],
+      tech: ['CrewAI', 'Llama 3.2', 'Multi-Agent Systems', 'FastAPI', 'Streamlit', 'Python'],
+    },
+    {
+      label: 'Vision-Language Damage Classification',
+      subtitle: 'LoRA Fine-Tuned Qwen2-VL-7B on AMD MI300X GPU',
+      metric: { value: '<5s', label: 'Damage GeoJSON per Image' },
+      description: 'A Qwen2-VL-7B vision–language model fine-tuned via Low-Rank Adaptation (LoRA) on an AMD Instinct MI300X GPU performs satellite image damage classification and generates damage-zone GeoJSON polygons. Returns structured geospatial damage assessments in under five seconds per image, enabling rapid multi-image batch processing across disaster-affected zones.',
+      focuses: [
+        'Low-Rank Adaptation (LoRA) fine-tuning on satellite flood imagery for domain-specific damage classification',
+        'Outputs damage-zone GeoJSON polygons for direct integration with geospatial routing pipeline',
+        'Sub-5-second inference enabling real-time multi-image triage across flood-impacted regions',
+      ],
+      tech: ['Qwen2-VL-7B', 'LoRA Fine-Tuning', 'AMD MI300X', 'GeoJSON', 'Computer Vision', 'PyTorch'],
+    },
+    {
+      label: 'Geospatial Flood & Evacuation Engine',
+      subtitle: 'Live Precipitation → Road Intersection → Optimal Routing',
+      metric: { value: '14', label: 'Integrated Response Functions' },
+      description: 'A live-data agent retrieves hourly precipitation from the Open-Meteo API to generate dynamic flood polygons, which are spatially intersected with OpenStreetMap road networks via GeoPandas to identify blocked road segments. A routing agent then computes optimal hazard-avoidant evacuation paths using NetworkX shortest-path algorithms. Supplementary modules add 7-day predictive flood forecasting and emergency shelter/supply-point localization via Overpass API.',
+      focuses: [
+        'Open-Meteo hourly precipitation → flood polygon generation with dynamic spatial extent',
+        'GeoPandas spatial intersection against OpenStreetMap road networks for real-time blocked segment detection',
+        'NetworkX hazard-avoidant shortest-path routing around dynamically computed flood zones',
+      ],
+      tech: ['GeoPandas', 'NetworkX', 'Open-Meteo API', 'OpenStreetMap', 'Overpass API', 'Folium'],
+    },
+    {
+      label: 'Community & Offline Resilience Modules',
+      subtitle: 'Crowd-Sourced Reporting & Connectivity-Degraded Mapping',
+      metric: { value: 'Offline', label: 'Resilient Cached Maps' },
+      description: 'Beyond core analytics, supplementary modules provide crowd-sourced geotagged incident reporting, missing-person tracking, and emergency SOS dispatching for community coordination. An offline-resilient mapping capability caches road graphs and exports self-contained HTML maps for connectivity-degraded environments — ensuring critical evacuation intelligence remains accessible when network infrastructure fails during disasters.',
+      focuses: [
+        'Crowd-sourced geotagged incident reporting and missing-person tracking for community situational awareness',
+        'Emergency SOS dispatching integrated directly into the multi-agent response pipeline',
+        'Offline-resilient cached road graphs + self-contained HTML map exports for zero-connectivity disaster zones',
+      ],
+      tech: ['Folium', 'Overpass API', 'Streamlit', 'HTML Export', 'FastAPI', 'Python'],
+    },
   ],
 }
 
@@ -98,7 +320,7 @@ const education = {
   gpa: '3.92 / 4.00',
   highlights: [
     'Specialization: Net-Centric Applications, Data Science & Engineering',
-    'Final Year Project: Agentic AI for Industrial Predictive Maintenance',
+    'Final Year Research Project: Designing Disaster Early Warning Systems for Users with Cognitive Impairments',
     'Active in IEEE Student Branch and SESA leadership roles',
   ],
 }
@@ -118,7 +340,7 @@ const leadership = [
   { role: 'PR Lead, IT Unit', org: 'Leo Club',                                   inst: 'University of Kelaniya', period: 'Aug 2024 – May 2025' },
 ]
 
-const NAV_LINKS = ['skills', 'experience', 'research', 'projects', 'education', 'contact']
+const NAV_LINKS = ['education', 'skills', 'experience', 'research', 'projects', 'contact']
 
 /* ─── Page ─── */
 
@@ -266,107 +488,156 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── EDUCATION ─── */}
+      <section id="education" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeading number="02" title="Education" />
+
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            {/* Degree card */}
+            <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
+              <div className="flex items-center gap-4 px-6 py-4 border-b border-[#111] bg-[#050505]">
+                <div className="w-10 h-10 rounded-xl bg-[#0d0d0d] border border-[#1e1e1e] flex items-center justify-center flex-shrink-0">
+                  <GraduationIcon />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono text-[#888]">{education.period}</p>
+                  <p className="text-[11px] font-mono text-[#555]">{education.location}</p>
+                </div>
+              </div>
+              <div className="px-6 py-5 bg-[#030303] space-y-3">
+                <div>
+                  <h3 className="text-[15px] font-semibold text-white">{education.degree}</h3>
+                  <p className="text-[13px] text-[#888] mt-0.5">{education.university}</p>
+                </div>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] font-mono text-[#aaa] border border-[#222] rounded-lg bg-[#0a0a0a]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                  CGPA: {education.gpa}
+                </span>
+                <ul className="space-y-2 pt-1">
+                  {education.highlights.map((h, i) => (
+                    <li key={i} className="flex gap-2.5 text-[12px] text-[#999] leading-snug">
+                      <span className="text-[#555] flex-shrink-0 mt-0.5">›</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Leadership card */}
+            <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
+              <div className="px-6 py-4 border-b border-[#111] bg-[#050505]">
+                <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Leadership & Activities</p>
+              </div>
+              <div className="divide-y divide-[#080808] bg-[#030303]">
+                {leadership.map((l) => (
+                  <div key={l.role} className="px-6 py-4 hover:bg-[#050505] transition-colors">
+                    <p className="text-[13px] font-semibold text-white">{l.role}</p>
+                    <p className="text-[12px] text-[#888] mt-0.5">{l.org} — {l.inst}</p>
+                    <p className="text-[10px] font-mono text-[#555] mt-1">{l.period}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Certifications */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Verified Credentials</p>
+              <span className="text-[10px] font-mono text-[#444]">— {certifications.length} Certificates</span>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              {certifications.map((cert) => (
+                <div
+                  key={cert.name}
+                  className="flex items-start gap-3 px-4 py-3.5 border border-[#111] rounded-xl bg-[#040404] hover:border-[#1a1a1a] hover:bg-[#060606] transition-colors"
+                >
+                  <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] flex items-center justify-center mt-0.5">
+                    <span className="text-[8px] font-black text-[#333]">{cert.category.slice(0, 2).toUpperCase()}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[12px] text-[#aaa] font-medium leading-snug truncate">{cert.name}</p>
+                    <p className="text-[10px] font-mono text-[#555] mt-0.5">{cert.issuer} · {cert.category}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── SKILLS ─── */}
       <section id="skills" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="01" title="Technical Skills" />
-          <div className="divide-y divide-[#0e0e0e]">
-            {allSkills.map((group) => (
-              <div key={group.category} className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-5">
-                <div className="sm:w-40 flex-shrink-0 pt-1">
-                  <p className="text-[10px] font-mono text-[#444] uppercase tracking-widest">{group.category}</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1.5 text-[12px] bg-[#070707] border border-[#161616] rounded-lg text-[#777] hover:text-[#ccc] hover:border-[#2a2a2a] transition-colors cursor-default"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <SkillsSlider />
         </div>
       </section>
 
       {/* ─── EXPERIENCE ─── */}
       <section id="experience" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="02" title="Experience" />
-          <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-5 border-b border-[#111] bg-[#050505]">
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl bg-[#0d0d0d] border border-[#1e1e1e] flex items-center justify-center flex-shrink-0">
-                  <span className="text-[13px] font-black text-[#777]">{experience.companyInitial}</span>
-                </div>
-                <div>
-                  <p className="text-[15px] font-semibold text-white">{experience.company}</p>
-                  <p className="text-[12px] text-[#555] font-mono mt-0.5">{experience.role} · {experience.team}</p>
-                  <p className="text-[11px] text-[#333] font-mono mt-0.5">{experience.location}</p>
-                </div>
-              </div>
-              <span className="flex-shrink-0 px-3 py-1.5 text-[11px] font-mono text-[#666] border border-[#1a1a1a] rounded-lg bg-[#080808]">
-                {experience.period}
-              </span>
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-7 h-[2px] bg-[#333] flex-shrink-0" />
+              <p className="text-[10px] font-mono text-[#333] uppercase tracking-[0.25em]">Work History</p>
             </div>
-            <div className="divide-y divide-[#090909] bg-[#030303]">
-              {experience.milestones.map((m, i) => (
-                <div key={i} className="flex gap-6 px-6 py-5 hover:bg-[#050505] transition-colors">
-                  <div className="flex-shrink-0 text-right mt-0.5 w-8">
-                    <span className="text-[11px] font-mono text-[#2a2a2a] leading-none block">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="text-[9px] font-mono text-[#1a1a1a] block">/{experience.milestones.length}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-semibold text-[#ccc] mb-1.5">{m.label}</p>
-                    <p className="text-[13px] text-[#555] leading-[1.75]">{m.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Experience</h2>
           </div>
+          <ExperiencePanel
+            company={experience.company}
+            role={experience.role}
+            team={experience.team}
+            location={experience.location}
+            period={experience.period}
+            milestones={experience.milestones}
+            defaultOpen
+          />
         </div>
       </section>
 
       {/* ─── RESEARCH ─── */}
       <section id="research" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="03" title="Research" />
-          <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
-            <div className="px-6 py-5 border-b border-[#111] bg-[#050505] space-y-3">
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 text-[10px] font-mono text-[#aaa] border border-[#2a2a2a] rounded-lg bg-[#0d0d0d] tracking-wide">{research.badge}</span>
-                <span className="px-3 py-1 text-[10px] font-mono text-[#555] border border-[#1a1a1a] rounded-lg bg-[#080808] tracking-wide">{research.venue}</span>
-              </div>
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                <h3 className="text-[15px] font-semibold text-white max-w-2xl leading-snug">{research.title}</h3>
-                <span className="text-[11px] font-mono text-[#333] whitespace-nowrap">{research.period}</span>
-              </div>
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-7 h-[2px] bg-[#333] flex-shrink-0" />
+              <p className="text-[10px] font-mono text-[#333] uppercase tracking-[0.25em]">Research & Publications</p>
             </div>
-            <div className="divide-y divide-[#090909] bg-[#030303]">
-              {research.milestones.map((m, i) => (
-                <div key={i} className="flex gap-6 px-6 py-5 hover:bg-[#050505] transition-colors">
-                  <div className="flex-shrink-0 text-right mt-0.5 w-8">
-                    <span className="text-[11px] font-mono text-[#2a2a2a] leading-none block">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="text-[9px] font-mono text-[#1a1a1a] block">/{research.milestones.length}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-semibold text-[#ccc] mb-1.5">{m.label}</p>
-                    <p className="text-[13px] text-[#555] leading-[1.75]">{m.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Research</h2>
           </div>
+          <ResearchPanel
+            title={research.title}
+            badge={research.badge}
+            venue={research.venue}
+            period={research.period}
+            contributions={research.contributions}
+            defaultOpen
+          />
+          <ResearchPanel
+            title={ipurse.title}
+            badge={ipurse.badge}
+            venue={ipurse.venue}
+            period={ipurse.period}
+            contributions={ipurse.contributions}
+            statusLabel={ipurse.statusLabel}
+          />
+          <ResearchPanel
+            title={fyp.title}
+            badge={fyp.badge}
+            venue={fyp.venue}
+            period={fyp.period}
+            contributions={fyp.contributions}
+            statusLabel={fyp.statusLabel}
+          />
         </div>
       </section>
 
       {/* ─── PROJECTS ─── */}
       <section id="projects" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="04" title="Projects" />
+          <SectionHeading number="05" title="Projects" />
           <div className="space-y-3">
             {projects.map((p) => (
               <div
@@ -403,86 +674,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── EDUCATION ─── */}
-      <section id="education" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading number="05" title="Education" />
-
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            {/* Degree card */}
-            <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
-              <div className="flex items-center gap-4 px-6 py-4 border-b border-[#111] bg-[#050505]">
-                <div className="w-10 h-10 rounded-xl bg-[#0d0d0d] border border-[#1e1e1e] flex items-center justify-center flex-shrink-0">
-                  <GraduationIcon />
-                </div>
-                <div>
-                  <p className="text-[11px] font-mono text-[#444]">{education.period}</p>
-                  <p className="text-[11px] font-mono text-[#2a2a2a]">{education.location}</p>
-                </div>
-              </div>
-              <div className="px-6 py-5 bg-[#030303] space-y-3">
-                <div>
-                  <h3 className="text-[15px] font-semibold text-white">{education.degree}</h3>
-                  <p className="text-[13px] text-[#555] mt-0.5">{education.university}</p>
-                </div>
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] font-mono text-[#aaa] border border-[#222] rounded-lg bg-[#0a0a0a]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                  CGPA: {education.gpa}
-                </span>
-                <ul className="space-y-2 pt-1">
-                  {education.highlights.map((h, i) => (
-                    <li key={i} className="flex gap-2.5 text-[12px] text-[#555] leading-snug">
-                      <span className="text-[#2a2a2a] flex-shrink-0 mt-0.5">›</span>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Leadership card */}
-            <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
-              <div className="px-6 py-4 border-b border-[#111] bg-[#050505]">
-                <p className="text-[10px] font-mono text-[#333] uppercase tracking-widest">Leadership & Activities</p>
-              </div>
-              <div className="divide-y divide-[#080808] bg-[#030303]">
-                {leadership.map((l) => (
-                  <div key={l.role} className="px-6 py-4 hover:bg-[#050505] transition-colors">
-                    <p className="text-[13px] font-semibold text-[#ccc]">{l.role}</p>
-                    <p className="text-[12px] text-[#444] mt-0.5">{l.org} — {l.inst}</p>
-                    <p className="text-[10px] font-mono text-[#2a2a2a] mt-1">{l.period}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Certifications */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <p className="text-[10px] font-mono text-[#333] uppercase tracking-widest">Verified Credentials</p>
-              <span className="text-[10px] font-mono text-[#222]">— {certifications.length} Certificates</span>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {certifications.map((cert) => (
-                <div
-                  key={cert.name}
-                  className="flex items-start gap-3 px-4 py-3.5 border border-[#111] rounded-xl bg-[#040404] hover:border-[#1a1a1a] hover:bg-[#060606] transition-colors"
-                >
-                  <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] flex items-center justify-center mt-0.5">
-                    <span className="text-[8px] font-black text-[#333]">{cert.category.slice(0, 2).toUpperCase()}</span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[12px] text-[#aaa] font-medium leading-snug truncate">{cert.name}</p>
-                    <p className="text-[10px] font-mono text-[#333] mt-0.5">{cert.issuer} · {cert.category}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>

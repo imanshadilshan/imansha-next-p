@@ -1,0 +1,200 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+
+const I = '/icons'   // local public/icons/
+
+/* ─── Central icon map — all local ─── */
+// whiteBg: true → white rounded card, black/dark icon (for Simple Icons + org logos)
+const ICONS: Record<string, { url: string; invert?: boolean; whiteBg?: boolean }> = {
+  /* Gen AI & ML */
+  'TensorFlow':          { url: `${I}/tensorflow.svg`, whiteBg: true },
+  'Keras':               { url: `${I}/keras.svg`, whiteBg: true },
+  'Scikit-learn':        { url: `${I}/scikitlearn.svg`, whiteBg: true },
+  'YOLOv8':              { url: `${I}/yolo.svg`, whiteBg: true },
+  'Computer Vision':     { url: `${I}/opencv.svg`, whiteBg: true },
+  'LLMs':                { url: `${I}/openai.svg`, whiteBg: true },
+  'RAG Pipelines':       { url: `${I}/langchain.svg`, whiteBg: true },
+  'LangGraph':           { url: `${I}/langchain.svg`, whiteBg: true },
+  'Multi-Agent':         { url: `${I}/langchain.svg`, whiteBg: true },
+  'Multimodal AI':       { url: `${I}/googlegemini.svg`, whiteBg: true },
+  'Prompt Eng.':         { url: `${I}/openai.svg`, whiteBg: true },
+  'AI Evaluation':       { url: `${I}/huggingface.svg`, whiteBg: true },
+  'pgvector':            { url: `${I}/postgresql.svg`, whiteBg: true },
+  'Embedding Pipelines': { url: `${I}/langchain.svg`, whiteBg: true },
+  'Vector Databases':    { url: `${I}/pinecone.svg`, whiteBg: true },
+
+  /* AI Frameworks */
+  'FastAPI':             { url: `${I}/fastapi.svg` },
+  'Streamlit':           { url: `${I}/streamlit.svg`, whiteBg: true },
+  'LangChain':           { url: `${I}/langchain.svg`, whiteBg: true },
+  'Gemini AI':           { url: `${I}/googlegemini.svg`, whiteBg: true },
+  'OpenAI API':          { url: `${I}/openai.svg`, whiteBg: true },
+
+  /* Backend */
+  'Python':              { url: `${I}/python.svg`, whiteBg: true },
+  'Java':                { url: `${I}/java.svg`, whiteBg: true },
+  'Spring Boot':         { url: `${I}/spring.svg`, whiteBg: true },
+  'Node.js':             { url: `${I}/nodejs.svg`, whiteBg: true },
+  'Express.js':          { url: `${I}/express.svg`, whiteBg: true },
+  'PHP':                 { url: `${I}/php.svg`, whiteBg: true },
+  'Ballerina':           { url: `${I}/ballerina.png`, whiteBg: true },
+
+  /* Frontend */
+  'Next.js':             { url: `${I}/nextjs.svg`, whiteBg: true },
+  'React':               { url: `${I}/react.svg`, whiteBg: true },
+  'TypeScript':          { url: `${I}/typescript.svg`, whiteBg: true },
+  'JavaScript':          { url: `${I}/javascript.svg`, whiteBg: true },
+  'Redux':               { url: `${I}/redux.svg`, whiteBg: true },
+  'Tailwind CSS':        { url: `${I}/tailwindcss.svg`, whiteBg: true },
+  'HTML5':               { url: `${I}/html5.svg`, whiteBg: true },
+  'CSS3':                { url: `${I}/css3.svg`, whiteBg: true },
+
+  /* Databases */
+  'PostgreSQL':          { url: `${I}/postgresql.svg`, whiteBg: true },
+  'MySQL':               { url: `${I}/mysql.svg`, whiteBg: true },
+  'MongoDB':             { url: `${I}/mongodb.svg`, whiteBg: true },
+
+  /* Cloud & DevOps */
+  'GCP':                 { url: `${I}/googlecloud.svg`, whiteBg: true },
+  'Azure':               { url: `${I}/azure.svg`, whiteBg: true },
+  'Docker':              { url: `${I}/docker.svg`, whiteBg: true },
+  'Git':                 { url: `${I}/git.svg`, whiteBg: true },
+  'RabbitMQ':            { url: `${I}/rabbitmq.svg`, whiteBg: true },
+  'Figma':               { url: `${I}/figma.svg`, whiteBg: true },
+  'WSO2 Choreo':         { url: `${I}/wso2.png`, whiteBg: true },
+  'Asgardeo (IAM)':      { url: `${I}/wso2.png`, whiteBg: true },
+}
+
+const CATEGORIES = [
+  {
+    label: 'Gen AI & ML',
+    skills: [
+      'TensorFlow', 'Keras', 'Scikit-learn', 'YOLOv8',
+      'Computer Vision', 'LLMs', 'RAG Pipelines', 'LangGraph',
+      'Multi-Agent', 'Multimodal AI', 'Prompt Eng.', 'AI Evaluation', 'pgvector',
+    ],
+  },
+  {
+    label: 'AI Frameworks',
+    skills: ['FastAPI', 'Streamlit', 'LangChain', 'LangGraph', 'Gemini AI', 'OpenAI API'],
+  },
+  {
+    label: 'Backend',
+    skills: ['Python', 'Java', 'Spring Boot', 'Node.js', 'Express.js', 'PHP', 'Ballerina'],
+  },
+  {
+    label: 'Frontend',
+    skills: ['Next.js', 'React', 'TypeScript', 'JavaScript', 'Redux', 'Tailwind CSS', 'HTML5', 'CSS3'],
+  },
+  {
+    label: 'Databases',
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'pgvector'],
+  },
+  {
+    label: 'Cloud & DevOps',
+    skills: ['GCP', 'Azure', 'Docker', 'Git', 'RabbitMQ', 'Figma', 'WSO2 Choreo', 'Asgardeo (IAM)'],
+  },
+]
+
+/* ─── Single skill card ─── */
+function SkillCard({ name }: { name: string }) {
+  const icon = ICONS[name]
+  const [imgError, setImgError] = useState(false)
+
+  const abbr = name
+    .replace(/[()]/g, '')
+    .split(/[\s\-\/]+/)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 3)
+
+  const cardClass = icon?.whiteBg
+    ? 'w-[76px] h-[76px] flex items-center justify-center rounded-2xl border border-[#e8e8e8] bg-white p-3 group-hover:border-[#ccc] transition-all'
+    : 'w-[76px] h-[76px] flex items-center justify-center rounded-2xl border border-[#141414] bg-[#060606] group-hover:border-[#2a2a2a] group-hover:bg-[#0a0a0a] transition-all'
+
+  return (
+    <div className="flex flex-col items-center gap-3 w-[110px] flex-shrink-0 group cursor-default">
+      <div className={cardClass}>
+        {icon && !imgError ? (
+          <img
+            src={icon.url}
+            alt={name}
+            className="w-full h-full object-contain"
+            style={icon.invert ? { filter: 'brightness(0) invert(1)' } : undefined}
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <span className="text-[12px] font-black text-[#2a2a2a] tracking-tight">{abbr}</span>
+        )}
+      </div>
+      <span className="text-[10px] text-[#444] font-mono text-center leading-snug group-hover:text-[#888] transition-colors px-1">
+        {name}
+      </span>
+    </div>
+  )
+}
+
+/* ─── Main component ─── */
+export function SkillsSlider() {
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setActive((p) => (p + 1) % CATEGORIES.length), 5000)
+    return () => clearInterval(id)
+  }, [])
+
+  const cat    = CATEGORIES[active]
+  const items  = [...cat.skills, ...cat.skills, ...cat.skills, ...cat.skills]
+  const speed  = cat.skills.length <= 5 ? 'animate-marquee-fast' : 'animate-marquee'
+
+  return (
+    <div>
+      {/* Label */}
+      <div className="flex items-center gap-3 mb-8">
+        <div className="w-7 h-[2px] bg-white flex-shrink-0" />
+        <p className="text-[11px] font-mono text-[#444] tracking-[0.25em] uppercase">Technologies I Work With</p>
+      </div>
+
+      {/* Category tabs */}
+      <div className="flex flex-wrap gap-2 mb-10">
+        {CATEGORIES.map((c, i) => (
+          <button
+            key={c.label}
+            onClick={() => setActive(i)}
+            className={`px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest transition-all ${
+              i === active
+                ? 'bg-white text-black'
+                : 'text-[#444] border border-[#161616] hover:border-[#2a2a2a] hover:text-[#888]'
+            }`}
+          >
+            {c.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Marquee */}
+      <div className="overflow-hidden">
+        <div key={active} className={`flex gap-8 ${speed}`} style={{ width: 'max-content' }}>
+          {items.map((name, i) => (
+            <SkillCard key={`${active}-${i}`} name={name} />
+          ))}
+        </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex items-center gap-2 mt-8">
+        {CATEGORIES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className={`transition-all rounded-full ${
+              i === active ? 'w-5 h-1.5 bg-white' : 'w-1.5 h-1.5 bg-[#222] hover:bg-[#444]'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
