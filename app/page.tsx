@@ -5,6 +5,7 @@ import { ContactForm } from './components/ContactForm'
 import { SkillsSlider } from './components/SkillsSlider'
 import { ExperiencePanel } from './components/ExperiencePanel'
 import { ResearchPanel } from './components/ResearchPanel'
+import { InstitutionLogo } from './components/InstitutionLogo'
 
 export const dynamic = 'force-dynamic'
 
@@ -231,7 +232,7 @@ const ipurse = {
   title: 'A Multi-Agent AI Framework for Real-Time Flood Disaster Response Using Satellite Imagery and Geospatial Analysis',
   badge: 'iPURSE 2026 · Abstract ID: 569',
   venue: 'Peradeniya University International Research Symposium',
-  period: 'Jun 2026',
+  period: 'Apr 2026 - Present',
   statusLabel: 'Under Revision',
   contributions: [
     {
@@ -312,18 +313,37 @@ const projects = [
   },
 ]
 
-const education = {
-  degree: 'B.Sc. (Hons.) in Software Engineering',
-  university: 'University of Kelaniya',
-  period: 'Jul 2023 – Present',
-  location: 'Kelaniya, Sri Lanka',
-  gpa: '3.92 / 4.00',
-  highlights: [
-    'Specialization: Net-Centric Applications, Data Science & Engineering',
-    'Final Year Research Project: Designing Disaster Early Warning Systems for Users with Cognitive Impairments',
-    'Active in IEEE Student Branch and SESA leadership roles',
-  ],
-}
+const educationList = [
+  {
+    logo: '/education/kelaniya.png',
+    period: 'Jul 2023 – Present',
+    institution: 'University of Kelaniya',
+    degree: 'B.Sc. (Hons.) in Software Engineering',
+    location: 'Kelaniya, Sri Lanka',
+    gpa: '3.92 / 4.00',
+    deansListBadge: '2× Dean\'s List',
+    isCurrent: true,
+    highlights: [
+      "Awarded Dean's List recognition for academic excellence in Year 2 (GPA: 3.94)",
+      "Awarded Dean's List recognition for academic excellence in Year 1 (GPA: 3.84)",
+      "Specialization: Data Science & Engineering & Health Informatics",
+      "Final Year Research Project: Designing Disaster Early Warning Systems for Users with Cognitive Impairments",
+      "Active in IEEE Student Branch and SESA leadership roles",
+    ]
+  },
+  {
+    logo: '/education/bandarawela.png',
+    period: '2019 – 2022',
+    institution: 'Bandarawela Central College',
+    degree: 'GCE Advanced Level',
+    location: 'Bandarawela, Sri Lanka',
+    isCurrent: false,
+    highlights: [
+      "Bandarawela Central College, Bandarawela - Physical Science Stream",
+      "Z - Score: 1.6086"
+    ]
+  }
+]
 
 const certifications = [
   { name: 'Introduction to Generative AI', issuer: 'Google',      category: 'AI & Data' },
@@ -335,8 +355,8 @@ const certifications = [
 ]
 
 const leadership = [
-  { role: 'President',        org: "Software Engineering Students' Association", inst: 'University of Kelaniya', period: 'Jun 2025 – Present' },
-  { role: 'Head of Design',   org: 'IEEE Student Branch Affinity Group',         inst: 'University of Kelaniya', period: 'Aug 2024 – Present' },
+  { role: 'President',        org: "Software Engineering Students' Association", inst: 'University of Kelaniya', period: 'Jun 2025 – Jun 2026' },
+  { role: 'Head of Design',   org: 'IEEE Student Branch Affinity Group',         inst: 'University of Kelaniya', period: 'Aug 2024 – Aug 2025' },
   { role: 'PR Lead, IT Unit', org: 'Leo Club',                                   inst: 'University of Kelaniya', period: 'Aug 2024 – May 2025' },
 ]
 
@@ -491,46 +511,91 @@ export default function Home() {
       {/* ─── EDUCATION ─── */}
       <section id="education" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="02" title="Education" />
-
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            {/* Degree card */}
-            <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
-              <div className="flex items-center gap-4 px-6 py-4 border-b border-[#111] bg-[#050505]">
-                <div className="w-10 h-10 rounded-xl bg-[#0d0d0d] border border-[#1e1e1e] flex items-center justify-center flex-shrink-0">
-                  <GraduationIcon />
-                </div>
-                <div>
-                  <p className="text-[11px] font-mono text-[#888]">{education.period}</p>
-                  <p className="text-[11px] font-mono text-[#555]">{education.location}</p>
-                </div>
-              </div>
-              <div className="px-6 py-5 bg-[#030303] space-y-3">
-                <div>
-                  <h3 className="text-[15px] font-semibold text-white">{education.degree}</h3>
-                  <p className="text-[13px] text-[#888] mt-0.5">{education.university}</p>
-                </div>
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] font-mono text-[#aaa] border border-[#222] rounded-lg bg-[#0a0a0a]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                  CGPA: {education.gpa}
-                </span>
-                <ul className="space-y-2 pt-1">
-                  {education.highlights.map((h, i) => (
-                    <li key={i} className="flex gap-2.5 text-[12px] text-[#999] leading-snug">
-                      <span className="text-[#555] flex-shrink-0 mt-0.5">›</span>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-7 h-[2px] bg-[#333] flex-shrink-0" />
+              <p className="text-[10px] font-mono text-[#333] uppercase tracking-[0.25em]">Academic Background</p>
             </div>
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Education</h2>
+          </div>
 
-            {/* Leadership card */}
-            <div className="border border-[#1a1a1a] rounded-2xl overflow-hidden">
+          {/* Timeline - Full Width */}
+          <div className="relative border-l border-[#141414] ml-2 sm:ml-4 pl-6 sm:pl-8 space-y-6 mb-12">
+            {educationList.map((edu, idx) => (
+              <div key={idx} className="relative group">
+                {/* Timeline circle node */}
+                <div className={`absolute left-0 top-6 -translate-x-1/2 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 z-10 ${
+                  edu.isCurrent
+                    ? 'border-white bg-white text-black shadow-[0_0_10px_rgba(255,255,255,0.15)]'
+                    : 'border-[#1a1a1a] bg-[#0c0c0c] text-[#444] group-hover:border-[#333] group-hover:text-white'
+                }`}>
+                  <GraduationIcon className={edu.isCurrent ? 'text-black w-3.5 h-3.5' : 'text-[#444] group-hover:text-white w-3.5 h-3.5'} />
+                </div>
+
+                {/* Card */}
+                <div className={`relative border border-[#141414] rounded-2xl overflow-hidden bg-[#050505]/60 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#222] hover:bg-[#080808] ${
+                  edu.isCurrent
+                    ? 'border-l-[3px] border-l-white'
+                    : 'border-l-[3px] border-l-[#222] hover:border-l-white/60'
+                }`}>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <InstitutionLogo src={edu.logo} name={edu.institution} />
+                      <div>
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <span className="text-[10px] font-mono text-[#888] tracking-wider font-semibold">{edu.period}</span>
+                          {edu.gpa && (
+                            <span className="px-1.5 py-0.5 text-[9px] font-bold font-mono rounded-full bg-[#111] border border-[#222] text-[#ccc]">
+                              GPA {edu.gpa}
+                            </span>
+                          )}
+                          {edu.deansListBadge && (
+                            <span className="px-1.5 py-0.5 text-[9px] font-semibold font-mono rounded-full border border-white/20 bg-white/5 text-white flex items-center gap-0.5">
+                              <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                              {edu.deansListBadge}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-[13px] font-bold text-white mt-0.5">{edu.institution}</h3>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 text-[10px] font-mono text-[#555] sm:ml-auto">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      {edu.location}
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-[#111] my-3.5" />
+
+                  <div>
+                    <h4 className="text-[14.5px] font-bold text-white tracking-tight leading-snug">{edu.degree}</h4>
+                    <ul className="space-y-2 mt-3.5">
+                      {edu.highlights.map((bullet, bIdx) => (
+                        <li key={bIdx} className="flex gap-2.5 text-[12.5px] text-[#777] leading-relaxed">
+                          <span className="w-1 h-1 rounded-full bg-[#444] mt-2 flex-shrink-0 group-hover:bg-[#888] transition-colors duration-300" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Leadership & Activities and Certifications Grid */}
+          <div className="grid md:grid-cols-3 gap-4">
+            
+            {/* Leadership & Activities */}
+            <div className="md:col-span-1 border border-[#1a1a1a] rounded-2xl overflow-hidden bg-[#050505]/40 flex flex-col h-full">
               <div className="px-6 py-4 border-b border-[#111] bg-[#050505]">
                 <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Leadership & Activities</p>
               </div>
-              <div className="divide-y divide-[#080808] bg-[#030303]">
+              <div className="divide-y divide-[#080808] bg-[#030303] flex-1">
                 {leadership.map((l) => (
                   <div key={l.role} className="px-6 py-4 hover:bg-[#050505] transition-colors">
                     <p className="text-[13px] font-semibold text-white">{l.role}</p>
@@ -540,31 +605,35 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/* Certifications */}
+            <div className="md:col-span-2 border border-[#1a1a1a] rounded-2xl overflow-hidden bg-[#050505]/40 flex flex-col h-full">
+              <div className="px-6 py-4 border-b border-[#111] bg-[#050505] flex items-center justify-between">
+                <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Verified Credentials</p>
+                <span className="text-[10px] font-mono text-[#444]">— {certifications.length} Certificates</span>
+              </div>
+              <div className="p-6 bg-[#030303] flex-1">
+                <div className="grid sm:grid-cols-2 gap-2.5">
+                  {certifications.map((cert) => (
+                    <div
+                      key={cert.name}
+                      className="flex items-start gap-3 px-4 py-3.5 border border-[#111] rounded-xl bg-[#040404] hover:border-[#1a1a1a] hover:bg-[#060606] transition-colors"
+                    >
+                      <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] flex items-center justify-center mt-0.5">
+                        <span className="text-[8px] font-black text-[#333]">{cert.category.slice(0, 2).toUpperCase()}</span>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[12px] text-[#aaa] font-medium leading-snug truncate">{cert.name}</p>
+                        <p className="text-[10px] font-mono text-[#555] mt-0.5">{cert.issuer} · {cert.category}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Certifications */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <p className="text-[10px] font-mono text-[#555] uppercase tracking-widest">Verified Credentials</p>
-              <span className="text-[10px] font-mono text-[#444]">— {certifications.length} Certificates</span>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {certifications.map((cert) => (
-                <div
-                  key={cert.name}
-                  className="flex items-start gap-3 px-4 py-3.5 border border-[#111] rounded-xl bg-[#040404] hover:border-[#1a1a1a] hover:bg-[#060606] transition-colors"
-                >
-                  <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] flex items-center justify-center mt-0.5">
-                    <span className="text-[8px] font-black text-[#333]">{cert.category.slice(0, 2).toUpperCase()}</span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[12px] text-[#aaa] font-medium leading-snug truncate">{cert.name}</p>
-                    <p className="text-[10px] font-mono text-[#555] mt-0.5">{cert.issuer} · {cert.category}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -812,9 +881,9 @@ function DownloadIcon() {
   )
 }
 
-function GraduationIcon() {
+function GraduationIcon({ className = 'text-[#444]' }: { className?: string }) {
   return (
-    <svg className="w-4 h-4 text-[#444]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
     </svg>
