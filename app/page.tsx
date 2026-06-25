@@ -549,9 +549,13 @@ export default function Home() {
             ))}
           </nav>
 
-          <span className="hidden lg:block text-[11px] font-black tracking-[0.15em] text-[#444] uppercase select-none">
-            Imansha Dilshan
-          </span>
+          <a
+            href="/CV/Imansha_Dilshan_AI_Engineer_CV.pdf"
+            download="Imansha_Dilshan_AI_Engineer_CV.pdf"
+            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[10px] font-mono font-bold tracking-wider text-white uppercase rounded-lg transition-all cursor-pointer shadow-md"
+          >
+            <DownloadIcon /> Download Resume
+          </a>
         </div>
       </header>
 
@@ -634,9 +638,9 @@ export default function Home() {
               <a
                 href="/CV/Imansha_Dilshan_AI_Engineer_CV.pdf"
                 download="Imansha_Dilshan_AI_Engineer_CV.pdf"
-                className="flex items-center gap-2 px-5 py-2.5 border border-[#1a1a1a] text-[#444] text-[13px] font-semibold hover:border-[#333] hover:text-[#888] transition-all cursor-pointer"
+                className="flex items-center gap-2 px-5 py-2.5 border border-[#2a2a2a] text-[#bbb] text-[13px] font-semibold hover:border-[#444] hover:text-white transition-all cursor-pointer"
               >
-                <DownloadIcon /> CV
+                <DownloadIcon /> Resume
               </a>
             </div>
 
@@ -867,16 +871,24 @@ export default function Home() {
 
           <ProjectsSlider projects={projects} />
 
-          {/* Button to GitHub Projects */}
-          <div className="flex justify-center mt-10">
+          {/* Buttons to GitHub & Resume */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
             <a
               href={contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[12px] font-bold tracking-wider rounded-xl uppercase flex items-center gap-2 transition-all cursor-pointer shadow-md"
+              className="w-full sm:w-auto px-6 py-3 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[12px] font-bold tracking-wider rounded-xl uppercase flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
             >
               <GitHubIcon />
               More Projects on GitHub
+            </a>
+            <a
+              href="/CV/Imansha_Dilshan_AI_Engineer_CV.pdf"
+              download="Imansha_Dilshan_AI_Engineer_CV.pdf"
+              className="w-full sm:w-auto px-6 py-3 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[12px] font-bold tracking-wider rounded-xl uppercase flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
+            >
+              <DownloadIcon />
+              Download Resume
             </a>
           </div>
         </div>
