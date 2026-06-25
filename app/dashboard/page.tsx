@@ -344,7 +344,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       
-                      <p className="text-[13.5px] text-[#aaa] leading-relaxed whitespace-pre-wrap font-sans bg-[#050505]/40 border border-[#111]/40 rounded-xl p-3.5">
+                      <p className="text-[13.5px] text-[#ccc] leading-relaxed whitespace-pre-wrap break-words font-sans bg-[#050505]/40 border border-[#111]/40 rounded-xl p-3.5 w-full max-w-full">
                         {s.message}
                       </p>
 

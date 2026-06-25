@@ -24,7 +24,7 @@ function getContent(): PortfolioContent {
     return {
       hero: { greeting: "Hello, I'm", name: 'Imansha Dilshan', title: 'AI Engineer | Full-Stack Developer', tagline: 'Building production-grade Generative AI systems, LLM-powered RAG pipelines, and scalable full-stack applications.', availability: 'Available' },
       about: { summary: 'Final-year Software Engineering undergraduate and AI Engineer with hands-on experience building production Generative AI systems.', highlights: ['IEEE Research — IRAI 2026 Melbourne', 'WSO2 Industry Experience', 'CGPA: 3.92 / 4.00'] },
-      contact: { email: 'imansha.idr@gmail.com', phone: '+94 76 311 7229', linkedin: 'https://linkedin.com/in/imansha-dilshan', github: 'https://github.com/imanshadilshan', medium: 'https://medium.com/@imansha.idr', location: 'Colombo, Sri Lanka' },
+      contact: { email: 'imansha.idr@gmail.com', phone: '+94 76 311 7229', linkedin: 'https://www.linkedin.com/in/imanshadilshan', github: 'https://github.com/imanshadilshan', medium: 'https://medium.com/@imansha.idr', location: 'Colombo, Sri Lanka' },
     }
   }
 }
@@ -632,10 +632,9 @@ export default function Home() {
                 Get In Touch
               </a>
               <a
-                href="/Imansha_Dilshan_AI_Engineer_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 border border-[#1a1a1a] text-[#444] text-[13px] font-semibold hover:border-[#333] hover:text-[#888] transition-all"
+                href="/CV/Imansha_Dilshan_AI_Engineer_CV.pdf"
+                download="Imansha_Dilshan_AI_Engineer_CV.pdf"
+                className="flex items-center gap-2 px-5 py-2.5 border border-[#1a1a1a] text-[#444] text-[13px] font-semibold hover:border-[#333] hover:text-[#888] transition-all cursor-pointer"
               >
                 <DownloadIcon /> CV
               </a>
