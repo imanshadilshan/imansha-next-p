@@ -24,7 +24,7 @@ function getContent(): PortfolioContent {
     return {
       hero: { greeting: "Hello, I'm", name: 'Imansha Dilshan', title: 'AI Engineer | Full-Stack Developer', tagline: 'Building production-grade Generative AI systems, LLM-powered RAG pipelines, and scalable full-stack applications.', availability: 'Available' },
       about: { summary: 'Final-year Software Engineering undergraduate and AI Engineer with hands-on experience building production Generative AI systems.', highlights: ['IEEE Research — IRAI 2026 Melbourne', 'WSO2 Industry Experience', 'CGPA: 3.92 / 4.00'] },
-      contact: { email: 'imansha.idr@gmail.com', phone: '+94 76 311 7229', linkedin: 'https://linkedin.com/in/imansha-dilshan', github: 'https://github.com/ima-69', medium: 'https://medium.com/@imansha.idr', location: 'Colombo, Sri Lanka' },
+      contact: { email: 'imansha.idr@gmail.com', phone: '+94 76 311 7229', linkedin: 'https://linkedin.com/in/imansha-dilshan', github: 'https://github.com/imanshadilshan', medium: 'https://medium.com/@imansha.idr', location: 'Colombo, Sri Lanka' },
     }
   }
 }
@@ -361,7 +361,7 @@ const projects = [
       'Payment & Containerization: Integrated PayPal payment gateway and fully containerized via Docker.'
     ],
     image: '/projects/p5.png',
-    github: 'https://github.com/ima-69/Shopping-Squad-MERN'
+    github: 'https://github.com/imanshadilshan/Shopping-Squad-MERN'
   },
   {
     num: '06',
@@ -480,7 +480,44 @@ const leadership = [
   { role: 'PR Lead, IT Unit', org: 'Leo Club',                                   inst: 'University of Kelaniya', period: 'Aug 2024 – May 2025' },
 ]
 
-const NAV_LINKS = ['education', 'skills', 'experience', 'research', 'projects', 'contact']
+const articles = [
+  {
+    isFeatured: true,
+    title: "The Echo Chamber in Your Prompt: Why AI Struggles with True Originality",
+    excerpt: "Why does AI stubbornly cling to your comfort zone even when explicitly asked for a surprise? Exploring the hidden tug-of-war between originality, long-term memory profiles, and the machine learning 'helpfulness' trap.",
+    date: "May 12, 2026",
+    readTime: "3 min read",
+    tags: ["Generative AI", "AI Memory", "Prompt Engineering"],
+    image: "/articles/01.webp",
+    link: "https://medium.com/@imansha.idr/the-echo-chamber-in-your-prompt-why-ai-struggles-with-true-originality-aa167d097c76"
+  },
+  {
+    title: "Why Does AI Still \"Lie\" Even When It Searches the Web?",
+    excerpt: "Exploring the mechanics of AI grounding, search queries, and the four key reasons why language models still hallucinate fake links and details despite live web access.",
+    date: "Mar 11, 2026",
+    readTime: "3 min read",
+    tags: ["AI Grounding", "Hallucinations", "Search Reasoning"],
+    link: "https://medium.com/@imansha.idr/why-does-ai-still-lie-even-when-it-searches-the-web-c51c0102bbcc"
+  },
+  {
+    title: "The AI Memory Gap: Why LLMs Forget the Middle of Your Story",
+    excerpt: "Why do language models struggle with long contexts? Exploring the 'Lost in the Middle' phenomenon, attention taxes, and optimization strategies like re-ranking and position engineering.",
+    date: "Jan 30, 2026",
+    readTime: "3 min read",
+    tags: ["AI Memory", "LLM Context", "Lost in the Middle"],
+    link: "https://medium.com/@imansha.idr/the-ai-memory-gap-why-llms-forget-the-middle-of-your-story-edefa75b2a01"
+  },
+  {
+    title: "Human Brain vs Artificial Neural Networks",
+    excerpt: "How does a computer program learn? Translating biological neurons, dendrites, and synaptic strength into mathematical inputs, weights, sum functions, and activation gates.",
+    date: "Dec 15, 2025",
+    readTime: "3 min read",
+    tags: ["Neural Networks", "AI vs Brain", "Deep Learning"],
+    link: "https://medium.com/@imansha.idr/human-brain-vs-artificial-neural-networks-61b3a6577786"
+  }
+]
+
+const NAV_LINKS = ['education', 'skills', 'experience', 'research', 'projects', 'writing', 'contact']
 
 /* ─── Page ─── */
 
@@ -830,52 +867,253 @@ export default function Home() {
           </div>
 
           <ProjectsSlider projects={projects} />
+
+          {/* Button to GitHub Projects */}
+          <div className="flex justify-center mt-10">
+            <a
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[12px] font-bold tracking-wider rounded-xl uppercase flex items-center gap-2 transition-all cursor-pointer shadow-md"
+            >
+              <GitHubIcon />
+              More Projects on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WRITING ─── */}
+      <section id="writing" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
+        <div className="max-w-7xl mx-auto">
+          
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-7 h-[2px] bg-[#333] flex-shrink-0" />
+              <p className="text-[10px] font-mono text-[#888] uppercase tracking-[0.25em]">Thoughts &amp; Articles</p>
+            </div>
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Writing</h2>
+          </div>
+
+          {/* Intro & Stats */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
+            <p className="text-[#888] text-[13.5px] sm:text-[14.5px] leading-relaxed max-w-xl">
+              Sharing insights on backend development, database optimization, and security fundamentals through hands-on experience.
+            </p>
+            <div className="flex flex-wrap items-center gap-8 md:gap-12">
+              <div className="flex flex-col">
+                <span className="text-[1.8rem] sm:text-[2.2rem] font-black text-white leading-none tracking-tight">10+</span>
+                <span className="text-[9px] font-mono text-[#444] uppercase tracking-wider mt-1.5 flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-[#333]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                  Articles Published
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[1.8rem] sm:text-[2.2rem] font-black text-white leading-none tracking-tight">50+</span>
+                <span className="text-[9px] font-mono text-[#444] uppercase tracking-wider mt-1.5 flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-[#333]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                  Total Reads
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Featured Article Card */}
+          <div className="mb-6 border border-[#141414] rounded-2xl overflow-hidden bg-[#050505]/60 backdrop-blur-sm transition-all duration-300 hover:border-[#222] hover:bg-[#080808]">
+            <a href={articles[0].link} target="_blank" rel="noopener noreferrer" className="grid md:grid-cols-2 gap-0 group">
+              <div className="relative aspect-[16/10] md:aspect-auto min-h-[280px] overflow-hidden">
+                <span className="absolute top-4 left-4 bg-white text-black font-mono text-[9px] px-2.5 py-1 font-bold rounded tracking-widest uppercase z-20 shadow-md">
+                  Featured
+                </span>
+                <img
+                  src={articles[0].image}
+                  alt={articles[0].title}
+                  className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500"
+                />
+              </div>
+              <div className="p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {articles[0].tags.map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 text-[8.5px] font-mono rounded border border-[#222] bg-[#0c0c0c] text-[#888] font-semibold uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-[1.35rem] sm:text-[1.8rem] font-bold text-white tracking-tight leading-snug group-hover:text-gray-200 transition-colors">
+                    {articles[0].title}
+                  </h3>
+                  <p className="text-[13px] text-[#aaa] leading-relaxed mt-3.5 font-sans">
+                    {articles[0].excerpt}
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-between border-t border-[#111] pt-5 mt-6">
+                  <div className="flex items-center gap-3 text-[10.5px] font-mono text-[#555]">
+                    <span>{articles[0].date}</span>
+                    <span className="w-1 h-1 rounded-full bg-[#333]" />
+                    <span>{articles[0].readTime}</span>
+                  </div>
+                  <div className="w-9 h-9 border border-[#222] bg-[#0c0c0c] flex items-center justify-center rounded-full group-hover:border-white group-hover:text-white transition-all text-[#888]">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          {/* Grid of 3 other articles */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            {articles.slice(1).map((art, idx) => (
+              <a
+                key={idx}
+                href={art.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border border-[#141414] rounded-2xl p-5 bg-[#050505]/40 backdrop-blur-sm transition-all duration-300 hover:border-[#222] hover:bg-[#080808] flex flex-col justify-between min-h-[220px]"
+              >
+                <div>
+                  <div className="flex items-center gap-3 text-[10px] font-mono text-[#555] mb-3">
+                    <span>{art.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-[#333]" />
+                    <span>{art.readTime}</span>
+                  </div>
+                  <h4 className="text-[14.5px] font-bold text-white tracking-tight leading-snug group-hover:text-gray-200 transition-colors">
+                    {art.title}
+                  </h4>
+                  <p className="text-[12px] text-[#888] leading-relaxed mt-2.5 line-clamp-3 font-sans">
+                    {art.excerpt}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between border-t border-[#111] pt-3.5 mt-5">
+                  <div className="flex flex-wrap gap-1">
+                    {art.tags.slice(0, 2).map((tag) => (
+                      <span key={tag} className="px-1.5 py-0.5 text-[8px] font-mono rounded bg-[#111] text-[#666] uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-[#555] group-hover:text-white transition-colors">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Button to Medium */}
+          <div className="flex justify-center mt-4">
+            <a
+              href="https://medium.com/@imansha.idr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[12px] font-bold tracking-wider rounded-xl uppercase flex items-center gap-2 transition-all cursor-pointer shadow-md"
+            >
+              <MediumIcon />
+              More Articles on Medium
+            </a>
+          </div>
+
         </div>
       </section>
 
       {/* ─── CONTACT ─── */}
       <section id="contact" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 border-t border-[#0e0e0e]">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading number="06" title="Contact" />
-
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start">
-            {/* Left */}
-            <div className="space-y-6">
-              <p className="text-[#777] text-[15px] leading-[1.85] max-w-md">
-                Open to new opportunities, research collaborations, and interesting conversations about AI and technology. Let&apos;s build something great together.
-              </p>
-              <div className="space-y-2">
-                {[
-                  { href: `mailto:${contact.email}`,                    icon: <MailIcon />,    label: contact.email },
-                  { href: `tel:${contact.phone.replace(/\s/g, '')}`,    icon: <PhoneIcon />,   label: contact.phone },
-                  { href: contact.github,                               icon: <GitHubIcon />,  label: 'github.com/ima-69' },
-                  { href: contact.linkedin,                             icon: <LinkedInIcon />,label: 'linkedin.com/in/imansha-dilshan' },
-                ].map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-3 border border-[#111] rounded-xl bg-[#040404] hover:border-[#1e1e1e] hover:bg-[#070707] transition-all group"
-                  >
-                    <span className="text-[#333] group-hover:text-[#777] transition-colors flex-shrink-0">{item.icon}</span>
-                    <span className="text-[#666] text-[12px] font-mono group-hover:text-[#ccc] transition-colors">{item.label}</span>
-                  </a>
-                ))}
-              </div>
+          
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-7 h-[2px] bg-[#333] flex-shrink-0" />
+              <p className="text-[10px] font-mono text-[#888] uppercase tracking-[0.25em]">Let&apos;s Collaborate</p>
             </div>
-
-            {/* Right: Form */}
-            <ContactForm />
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white uppercase">Get In Touch</h2>
           </div>
+
+          <ContactForm email={contact.email} github={contact.github} linkedin={contact.linkedin} />
         </div>
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="border-t border-[#0e0e0e] py-8 px-4 sm:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[#222] text-[11px] font-mono">© 2026 Imansha Dilshan — Built with Next.js &amp; Tailwind</p>
-          <a href="/dashboard" className="text-[#1a1a1a] hover:text-[#444] text-[11px] font-mono transition-colors">/dashboard</a>
+      <footer className="border-t border-[#0e0e0e] bg-[#020202] pt-16 pb-12 px-4 sm:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-12">
+          
+          {/* Top section: Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_1fr_1.2fr] gap-10 md:gap-8">
+            
+            {/* Branding Column */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="text-base font-black text-white tracking-widest">IMANSHA DILSHAN</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              </div>
+              <p className="text-[#666] text-[13px] leading-relaxed max-w-sm font-sans">
+                AI Engineer &amp; Full-Stack Developer specializing in building production-grade Generative AI systems, multi-agent frameworks, and scalable high-performance applications.
+              </p>
+            </div>
+
+            {/* Sitemap Column */}
+            <div className="space-y-3.5">
+              <h4 className="text-[9.5px] font-mono text-[#333] uppercase tracking-widest font-bold">Sitemap</h4>
+              <ul className="space-y-2">
+                <li><a href="#about" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">01. About</a></li>
+                <li><a href="#education" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">02. Education</a></li>
+                <li><a href="#skills" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">03. Skills</a></li>
+                <li><a href="#experience" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">04. Experience</a></li>
+                <li><a href="#research" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">05. Research</a></li>
+                <li><a href="#projects" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">06. Projects</a></li>
+                <li><a href="#writing" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-mono">07. Writing</a></li>
+              </ul>
+            </div>
+
+            {/* Channels Column */}
+            <div className="space-y-3.5">
+              <h4 className="text-[9.5px] font-mono text-[#333] uppercase tracking-widest font-bold">Direct Channels</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href={`mailto:${contact.email}`} className="text-[#555] hover:text-[#bbb] text-[12.5px] transition-colors font-mono truncate block max-w-xs">
+                    {contact.email}
+                  </a>
+                </li>
+                <li>
+                  <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-sans">
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-sans">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href={contact.medium} target="_blank" rel="noopener noreferrer" className="text-[#555] hover:text-[#bbb] text-[12px] transition-colors font-sans">
+                    Medium Publication
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Availability/Location Column */}
+            <div className="space-y-3.5">
+              <h4 className="text-[9.5px] font-mono text-[#333] uppercase tracking-widest font-bold">Current Status</h4>
+              <p className="text-[#666] text-[13px] leading-relaxed max-w-xs font-sans">
+                Open to innovative full-time engineering roles, AI consulting, and research collaborations. Located in {contact.location}.
+              </p>
+              <div className="flex items-center gap-2 pt-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="text-[10px] font-mono text-white tracking-widest uppercase font-bold">Available for Work</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom section: Copyright */}
+          <div className="border-t border-[#0e0e0e] pt-8 text-center">
+            <p className="text-[#666] text-[11.5px] font-mono tracking-wider">
+              © {new Date().getFullYear()} Imansha Dilshan. All rights reserved.
+            </p>
+          </div>
+
         </div>
       </footer>
 
@@ -888,7 +1126,7 @@ export default function Home() {
 function SectionHeading({ number, title }: { number: string; title: string }) {
   return (
     <div className="mb-10">
-      <p className="text-[10px] font-mono text-[#2a2a2a] mb-3 tracking-widest uppercase">{number} / 06</p>
+      <p className="text-[10px] font-mono text-[#2a2a2a] mb-3 tracking-widest uppercase">{number} / 07</p>
       <h2 className="text-[2rem] sm:text-[2.8rem] font-black tracking-[-0.02em] text-white">{title}</h2>
     </div>
   )

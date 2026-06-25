@@ -10,7 +10,16 @@ interface Content {
   contact: { email: string; phone: string; linkedin: string; github: string; medium: string; location: string }
 }
 
-type Tab = 'hero' | 'about' | 'contact'
+interface Submission {
+  id: number
+  name: string
+  email: string
+  topic: string
+  message: string
+  created_at: string
+}
+
+type Tab = 'hero' | 'about' | 'contact' | 'submissions'
 
 export default function Dashboard() {
   const [authed, setAuthed] = useState(false)
@@ -22,6 +31,11 @@ export default function Dashboard() {
   const [saved, setSaved] = useState(false)
   const [loadError, setLoadError] = useState(false)
 
+  // Submissions State
+  const [submissions, setSubmissions] = useState<Submission[]>([])
+  const [loadingSubmissions, setLoadingSubmissions] = useState(false)
+  const [submissionsError, setSubmissionsError] = useState(false)
+
   useEffect(() => {
     if (authed) {
       fetch('/api/content')
@@ -30,6 +44,46 @@ export default function Dashboard() {
         .catch(() => setLoadError(true))
     }
   }, [authed])
+
+  useEffect(() => {
+    if (authed && tab === 'submissions') {
+      fetchSubmissions()
+    }
+  }, [authed, tab])
+
+  async function fetchSubmissions() {
+    setLoadingSubmissions(true)
+    setSubmissionsError(false)
+    try {
+      const res = await fetch('/api/submissions')
+      if (res.ok) {
+        const data = await res.json()
+        setSubmissions(data)
+      } else {
+        setSubmissionsError(true)
+      }
+    } catch {
+      setSubmissionsError(true)
+    } finally {
+      setLoadingSubmissions(false)
+    }
+  }
+
+  async function handleDeleteSubmission(id: number) {
+    if (!confirm('Are you sure you want to delete this submission?')) return
+    try {
+      const res = await fetch(`/api/submissions?id=${id}`, {
+        method: 'DELETE',
+      })
+      if (res.ok) {
+        setSubmissions((prev) => prev.filter((s) => s.id !== id))
+      } else {
+        alert('Failed to delete submission.')
+      }
+    } catch {
+      alert('Failed to delete submission.')
+    }
+  }
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -130,6 +184,7 @@ export default function Dashboard() {
     { id: 'hero', label: 'Hero' },
     { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
+    { id: 'submissions', label: 'Submissions' },
   ]
 
   return (
@@ -241,15 +296,88 @@ export default function Dashboard() {
           </div>
         )}
 
-        <div className="flex justify-end mt-8">
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-[#e8e8e8] disabled:opacity-40 transition-colors"
-          >
-            {saving ? 'Saving…' : 'Save Changes'}
-          </button>
-        </div>
+        {/* ── Submissions Tab ── */}
+        {tab === 'submissions' && (
+          <div className="space-y-4 animate-fade-up">
+            <div className="border border-[#111] rounded-xl overflow-hidden bg-[#050505]/40">
+              <div className="px-5 py-4 border-b border-[#111] bg-[#050505] flex items-center justify-between">
+                <h2 className="text-[10px] text-[#333] font-mono uppercase tracking-widest">Received Messages</h2>
+                <button
+                  onClick={fetchSubmissions}
+                  className="text-[10px] font-mono text-[#555] hover:text-white uppercase tracking-wider transition-colors"
+                >
+                  Refresh
+                </button>
+              </div>
+              
+              {loadingSubmissions ? (
+                <div className="p-8 flex items-center justify-center">
+                  <div className="w-5 h-5 border border-[#222] border-t-white rounded-full animate-spin" />
+                </div>
+              ) : submissionsError ? (
+                <div className="p-8 text-center text-red-500 text-xs font-mono">
+                  Failed to load submissions.
+                </div>
+              ) : submissions.length === 0 ? (
+                <div className="p-8 text-center text-[#333] text-xs font-mono">
+                  No submissions found.
+                </div>
+              ) : (
+                <div className="divide-y divide-[#111] bg-[#030303]">
+                  {submissions.map((s) => (
+                    <div key={s.id} className="p-5 space-y-3 hover:bg-[#050505] transition-colors">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                          <span className="text-[13px] font-bold text-white">{s.name}</span>
+                          <span className="text-[#333] text-xs font-mono mx-2">|</span>
+                          <a href={`mailto:${s.email}`} className="text-xs font-mono text-[#666] hover:text-[#aaa] transition-colors underline">
+                            {s.email}
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-[9.5px] font-mono text-[#555] bg-[#0c0c0c] border border-[#111] px-2 py-0.5 rounded uppercase tracking-wider">
+                            {s.topic}
+                          </span>
+                          <span className="text-[10.5px] font-mono text-[#444]">
+                            {new Date(s.created_at).toLocaleString()}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <p className="text-[13.5px] text-[#aaa] leading-relaxed whitespace-pre-wrap font-sans bg-[#050505]/40 border border-[#111]/40 rounded-xl p-3.5">
+                        {s.message}
+                      </p>
+
+                      <div className="flex justify-end pt-1">
+                        <button
+                          onClick={() => handleDeleteSubmission(s.id)}
+                          className="px-3 py-1.5 border border-red-950/40 hover:border-red-900 bg-red-950/10 hover:bg-red-950/20 text-red-400 hover:text-red-300 text-[10px] font-mono rounded-lg transition-all uppercase tracking-wider flex items-center gap-1.5"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {tab !== 'submissions' && (
+          <div className="flex justify-end mt-8">
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-[#e8e8e8] disabled:opacity-40 transition-colors"
+            >
+              {saving ? 'Saving…' : 'Save Changes'}
+            </button>
+          </div>
+        )}
       </main>
     </div>
   )
