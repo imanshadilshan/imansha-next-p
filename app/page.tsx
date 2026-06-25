@@ -7,6 +7,7 @@ import { ExperiencePanel } from './components/ExperiencePanel'
 import { ResearchPanel } from './components/ResearchPanel'
 import { InstitutionLogo } from './components/InstitutionLogo'
 import { ProjectsSlider } from './components/ProjectsSlider'
+import { Header } from './components/Header'
 
 export const dynamic = 'force-dynamic'
 
@@ -517,8 +518,6 @@ const articles = [
   }
 ]
 
-const NAV_LINKS = ['education', 'skills', 'experience', 'research', 'projects', 'writing', 'contact']
-
 /* ─── Page ─── */
 
 export default function Home() {
@@ -537,27 +536,7 @@ export default function Home() {
       />
 
       {/* ─── NAV ─── */}
-      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-[#141414]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
-          <a href="#" className="text-[15px] font-black tracking-tight text-white">ID.</a>
-
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-[11px] font-mono text-[#555] uppercase tracking-widest">
-            {NAV_LINKS.map((s) => (
-              <a key={s} href={`#${s}`} className="hover:text-white transition-colors">
-                {s}
-              </a>
-            ))}
-          </nav>
-
-          <a
-            href="/CV/Imansha_Dilshan_AI_Engineer_CV.pdf"
-            download="Imansha_Dilshan_AI_Engineer_CV.pdf"
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 border border-[#222] bg-[#0c0c0c] hover:bg-white hover:text-black hover:border-white text-[10px] font-mono font-bold tracking-wider text-white uppercase rounded-lg transition-all cursor-pointer shadow-md"
-          >
-            <DownloadIcon /> Download Resume
-          </a>
-        </div>
-      </header>
+      <Header />
 
       {/* ─── HERO ─── */}
       <section
@@ -585,7 +564,7 @@ export default function Home() {
         </div>
 
         {/* Left text — full width on mobile, 56% on lg+ */}
-        <div className="relative z-10 flex flex-col justify-center min-h-[calc(100vh-3.5rem)] px-6 sm:px-10 lg:px-16 py-10 w-full lg:w-[56%]">
+        <div className="relative z-10 flex flex-col justify-start lg:justify-center min-h-0 lg:min-h-[calc(100vh-3.5rem)] px-6 sm:px-10 lg:px-16 pt-24 pb-12 lg:py-10 w-full lg:w-[56%]">
           <div className="w-full animate-fade-up">
 
             {/* Portfolio label */}
@@ -658,11 +637,11 @@ export default function Home() {
         </div>
 
         {/* Mobile photo (below text on small screens) */}
-        <div className="lg:hidden w-full h-64 relative overflow-hidden">
+        <div className="lg:hidden w-full h-[400px] sm:h-[500px] relative overflow-hidden border-t border-[#111]">
           <img
             src="/hero.jpeg"
             alt="Imansha Dilshan"
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
       </section>
@@ -939,7 +918,7 @@ export default function Home() {
                 <img
                   src={articles[0].image}
                   alt={articles[0].title}
-                  className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500"
+                  className="absolute inset-0 w-full h-full object-cover lg:grayscale lg:group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500"
                 />
               </div>
               <div className="p-6 sm:p-8 flex flex-col justify-between">
